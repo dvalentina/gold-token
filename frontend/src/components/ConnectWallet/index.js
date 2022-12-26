@@ -1,16 +1,8 @@
 import React from "react";
-import useConnection from "../../hooks/useConnection";
+import { Button } from "./ConnectWallet.styled";
 
-function ConnectWallet() {
-  const { connect, account, balance } = useConnection();
-  return account ? (
-    <>
-      <p>Your account: {account}</p>
-      <p>Your balance: {balance}</p>
-    </>
-  ) : (
-    <button onClick={() => connect()}>Connect wallet</button>
-  );
+function ConnectWallet({ connect }) {
+  return <Button onClick={() => connect()}>Connect wallet</Button>;
 }
 
 export default ConnectWallet;
