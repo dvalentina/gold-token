@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
-// import { ethers } from "ethers";
+import { ethers } from "ethers";
+import { GOERLI_CHAIN_ID } from "../constants";
+import { toHex } from "../utils";
 
-// const provider = new ethers.providers.Web3Provider(window.ethereum);
-
-const useConnection = () => {
+const useWallet = () => {
   const [account, setAccount] = useState(null);
   const [balance, setBalance] = useState(null);
+  const [chainId, setChainId] = useState(null);
 
   async function connect() {
     if (window.ethereum) {
@@ -14,8 +15,6 @@ const useConnection = () => {
         .then(handleAccountsChanged)
         .catch((err) => {
           if (err.code === 4001) {
-            // EIP-1193 userRejectedRequest error
-            // If this happens, the user rejected the connection request.
             console.log("Please connect to MetaMask.");
           } else {
             console.error(err);
@@ -26,25 +25,25 @@ const useConnection = () => {
 
   function handleAccountsChanged(accounts) {
     if (accounts.length === 0) {
-      // MetaMask is locked or the user has not connected any accounts
       setAccount(null);
       setBalance(null);
+      setChainId(null);
       console.log("Please connect to MetaMask.");
     } else if (accounts[0] !== account) {
       setAccount(accounts[0]);
       getBalance();
-      // Do any other work!
+      // getChainId();
     }
   }
 
   useEffect(() => {
     window.ethereum
       .request({ method: "eth_accounts" })
-      .then(handleAccountsChanged)
+      .then((accounts) => {
+        handleAccountsChanged(accounts);
+      })
+      .then(getChainId)
       .catch((err) => {
-        // Some unexpected error.
-        // For backwards compatibility reasons, if no accounts are available,
-        // eth_accounts will return an empty array.
         console.error(err);
       });
   }, []);
@@ -56,16 +55,36 @@ const useConnection = () => {
           method: "eth_getBalance",
           params: [account, "latest"],
         })
-        .then((balance) => setBalance(balance))
+        .then((balance) => setBalance(ethers.utils.formatEther(balance)))
         .catch((err) => {
           console.log(err);
         });
     }
   }
 
-  function handleChainChanged(_chainId) {
-    // We recommend reloading the page, unless you must do otherwise
-    window.location.reload();
+  async function getChainId() {
+    if (account) {
+      window.ethereum
+        .request({
+          method: "eth_chainId",
+        })
+        .then((chain) => setChainId(chain))
+        .catch((err) => console.log(err));
+    }
+  }
+
+  function handleChainChanged(chainId) {
+    setChainId(chainId);
+  }
+
+  async function switchChain() {
+    window.ethereum
+      .request({
+        method: "wallet_switchEthereumChain",
+        params: [{ chainId: toHex(GOERLI_CHAIN_ID) }],
+      })
+      .then(() => getChainId())
+      .catch((err) => console.log(err));
   }
 
   useEffect(() => {
@@ -88,12 +107,19 @@ const useConnection = () => {
     if (account) {
       getBalance();
     }
+  }, [account, chainId]);
+
+  useEffect(() => {
+    getChainId();
   }, [account]);
 
   return {
     account,
     balance,
     connect,
+    chainId,
+    switchChain,
   };
 };
-export default useConnection;
+
+export default useWallet;

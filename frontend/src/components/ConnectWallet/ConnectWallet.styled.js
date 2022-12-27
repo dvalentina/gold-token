@@ -9,7 +9,6 @@ export const Button = styled.button`
   color: #121212;
   cursor: pointer;
   display: inline-flex;
-  flex: 1 1 auto;
   font-family: Inter, sans-serif;
   font-size: 1.2rem;
   font-weight: 700;
@@ -26,6 +25,8 @@ export const Button = styled.button`
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+  height: auto;
+  width: 100%;
 
   &:hover {
     box-shadow: #121212 0 0 0 3px, transparent 0 0 0 0;

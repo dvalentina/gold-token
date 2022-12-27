@@ -1,20 +1,23 @@
-import React from "react";
-import useConnection from "../../hooks/useConnection";
-import { Container, Card } from "./ConnectCard.styled";
+import React, { useContext } from "react";
+import { Container } from "./ConnectCard.styled";
 import ConnectWallet from "../ConnectWallet";
+import TokenCard from "../Card/TokenCard";
+import AccountCard from "../Card/AccountCard";
+import { WalletContext } from "../../contexts/WalletContext";
+import { GOERLI_CHAIN_ID } from "../../constants";
 
 function ConnectCard() {
-  const { connect, account, balance } = useConnection();
+  const { account, chainId } = useContext(WalletContext);
 
   return (
     <Container>
-      {account ? (
-        <Card>
-          <p>Account: {account}</p>
-          <p>Balance: {balance}</p>
-        </Card>
+      {account && chainId === GOERLI_CHAIN_ID ? (
+        <>
+          <AccountCard />
+          <TokenCard />
+        </>
       ) : (
-        <ConnectWallet connect={connect} />
+        <ConnectWallet />
       )}
     </Container>
   );
