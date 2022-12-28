@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Button = styled.button`
+export const StyledButton = styled.button`
   align-items: center;
   background-color: #fff;
   border-radius: 12px;

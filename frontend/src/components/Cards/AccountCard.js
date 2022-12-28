@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
 import { WalletContext } from "../../contexts/WalletContext";
-import Card from ".";
+import Card from "../Card";
 import { shortenAddress } from "../../utils";
+import Info from "../Info";
 
 function AccountCard() {
   const { account, balance } = useContext(WalletContext);
@@ -12,7 +13,11 @@ function AccountCard() {
     }`,
   };
 
-  return <Card title="Account Info" data={data} />;
+  return (
+    <Card>
+      <Info title="Account Info" data={data} />
+    </Card>
+  );
 }
 
 export default AccountCard;

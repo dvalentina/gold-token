@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Button } from "./ConnectWallet.styled";
+import Button from "../Button";
 import { WalletContext } from "../../contexts/WalletContext";
 import { GOERLI_CHAIN_ID } from "../../constants";
 
