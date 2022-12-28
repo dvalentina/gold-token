@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/learn-tokens/static/css/main.e6c13ad2.css",
+    "main.js": "/learn-tokens/static/js/main.0d144800.js",
+    "index.html": "/learn-tokens/index.html",
+    "main.e6c13ad2.css.map": "/learn-tokens/static/css/main.e6c13ad2.css.map",
+    "main.0d144800.js.map": "/learn-tokens/static/js/main.0d144800.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.0d144800.js"
+  ]
+}
