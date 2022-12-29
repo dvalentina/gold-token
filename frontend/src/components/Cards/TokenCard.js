@@ -1,16 +1,14 @@
 import React, { useContext } from "react";
-import useToken from "../../hooks/useToken";
 import Card from "../Card";
 import { WalletContext } from "../../contexts/WalletContext";
+import { TokenContext } from "../../contexts/TokenContext";
 import { shortenAddress } from "../../utils";
-import TransferCard from "./TransferCard";
 import Info from "../Info";
 
 function TokenCard() {
   const { account } = useContext(WalletContext);
-  const { name, decimals, totalSupply, symbol, balance, transfer } = useToken({
-    account,
-  });
+  const { name, decimals, totalSupply, symbol, balance } =
+    useContext(TokenContext);
 
   const data = {
     Name: name,
@@ -21,12 +19,9 @@ function TokenCard() {
   };
 
   return (
-    <>
-      <Card>
-        <Info title="Token Info" data={data} />
-      </Card>
-      <TransferCard transfer={transfer} symbol={symbol} />
-    </>
+    <Card>
+      <Info title="Token Info" data={data} />
+    </Card>
   );
 }
 

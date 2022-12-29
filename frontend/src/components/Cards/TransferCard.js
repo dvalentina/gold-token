@@ -2,10 +2,10 @@ import React from "react";
 import Card from "../Card";
 import TransferForm from "../Forms/TransferForm";
 
-function TransferCard({ transfer, symbol }) {
+function TransferCard() {
   return (
     <Card>
-      <TransferForm transferTokens={transfer} tokenSymbol={symbol} />
+      <TransferForm />
     </Card>
   );
 }

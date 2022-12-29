@@ -3,9 +3,11 @@ import { Title, Label, Form, FormElement, Input } from "./Form.styled";
 import Button from "../Button";
 import { WalletContext } from "../../contexts/WalletContext";
 import { shortenAddress } from "../../utils";
+import { TokenContext } from "../../contexts/TokenContext";
 
-function TransferForm({ transferTokens, tokenSymbol }) {
+function TransferForm() {
   const { account } = useContext(WalletContext);
+  const { symbol, transfer } = useContext(TokenContext);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -15,7 +17,7 @@ function TransferForm({ transferTokens, tokenSymbol }) {
     const amount = formData.get("amount");
 
     if (to && amount) {
-      transferTokens(to, amount);
+      transfer(to, amount);
     }
   };
 
@@ -27,7 +29,7 @@ function TransferForm({ transferTokens, tokenSymbol }) {
       </Title>
       <Form onSubmit={handleSubmit}>
         <FormElement>
-          <Label>Amount of {tokenSymbol}</Label>
+          <Label>Amount of {symbol}</Label>
           <Input
             className="form-control"
             type="number"

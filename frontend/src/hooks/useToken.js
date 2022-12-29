@@ -92,6 +92,10 @@ const useToken = ({ account }) => {
     getBalance();
   }, []);
 
+  useEffect(() => {
+    getBalance();
+  }, [account]);
+
   return {
     name,
     decimals,

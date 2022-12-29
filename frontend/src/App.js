@@ -1,6 +1,7 @@
 import styled from "styled-components";
-import ConnectCard from "./components/ConnectCard";
+import MainPage from "./components/MainPage";
 import WalletProvider from "./contexts/WalletContext";
+import TokenProvider from "./contexts/TokenContext";
 
 const AppContainer = styled.div`
   position: absolute;
@@ -13,9 +14,11 @@ const AppContainer = styled.div`
 function App() {
   return (
     <WalletProvider>
-      <AppContainer>
-        <ConnectCard />
-      </AppContainer>
+      <TokenProvider>
+        <AppContainer>
+          <MainPage />
+        </AppContainer>
+      </TokenProvider>
     </WalletProvider>
   );
 }
