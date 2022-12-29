@@ -1,5 +1,12 @@
 import React, { useContext } from "react";
-import { Container } from "./MainPage.styled";
+import {
+  Container,
+  AccountGrid,
+  TokenGrid,
+  LogoGrid,
+  TransferGrid,
+  WalletGrid,
+} from "./MainPage.styled";
 import ConnectWallet from "../ConnectWallet";
 import TokenCard from "../Cards/TokenCard";
 import AccountCard from "../Cards/AccountCard";
@@ -13,15 +20,25 @@ function MainPage() {
 
   return (
     <Container>
-      <GoerliLogo />
+      <LogoGrid>
+        <GoerliLogo />
+      </LogoGrid>
       {account && chainId === GOERLI_CHAIN_ID ? (
         <>
-          <AccountCard />
-          <TokenCard />
-          <TransferCard />
+          <AccountGrid>
+            <AccountCard />
+          </AccountGrid>
+          <TokenGrid>
+            <TokenCard />
+          </TokenGrid>
+          <TransferGrid>
+            <TransferCard />
+          </TransferGrid>
         </>
       ) : (
-        <ConnectWallet />
+        <WalletGrid>
+          <ConnectWallet />
+        </WalletGrid>
       )}
     </Container>
   );

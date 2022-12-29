@@ -10,4 +10,8 @@ export const StyledCard = styled.div`
   gap: 16px;
   width: 100%;
   background: white;
+
+  @media (max-width: 500px) {
+    border-radius: 0;
+  }
 `;
