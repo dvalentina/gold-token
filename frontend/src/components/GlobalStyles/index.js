@@ -5,6 +5,7 @@ const GlobalStyles = createGlobalStyle`
     font-family: Verdana, sans-serif;
     background: #f3f3f3;
     margin: 0;
+    overflow: scroll;
   }
 `;
 
