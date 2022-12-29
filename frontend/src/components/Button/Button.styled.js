@@ -2,11 +2,25 @@ import styled from "styled-components";
 
 export const StyledButton = styled.button`
   align-items: center;
-  background-color: #fff;
+  background-color: ${({ color }) => {
+    switch (color) {
+      case "black":
+        return "black";
+      default:
+        return "#fff";
+    }
+  }};
   border-radius: 12px;
   box-shadow: transparent 0 0 0 3px, rgba(18, 18, 18, 0.1) 0 6px 20px;
   box-sizing: border-box;
-  color: #121212;
+  color: ${({ color }) => {
+    switch (color) {
+      case "black":
+        return "white";
+      default:
+        return "#121212";
+    }
+  }};
   cursor: pointer;
   display: inline-flex;
   font-family: Inter, sans-serif;

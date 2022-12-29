@@ -1,6 +1,6 @@
 import React from "react";
 import Card from "../Card";
-import TransferForm from "../TransferForm";
+import TransferForm from "../Forms/TransferForm";
 
 function TransferCard({ transfer, symbol }) {
   return (

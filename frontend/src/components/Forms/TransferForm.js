@@ -1,8 +1,12 @@
-import React from "react";
-import { Title, Label, Form, FormElement, Input } from "../Form/Form.styled";
+import React, { useContext } from "react";
+import { Title, Label, Form, FormElement, Input } from "./Form.styled";
 import Button from "../Button";
+import { WalletContext } from "../../contexts/WalletContext";
+import { shortenAddress } from "../../utils";
 
 function TransferForm({ transferTokens, tokenSymbol }) {
+  const { account } = useContext(WalletContext);
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -17,7 +21,10 @@ function TransferForm({ transferTokens, tokenSymbol }) {
 
   return (
     <>
-      <Title>Transfer</Title>
+      <Title>
+        Transfer{" "}
+        <span style={{ fontWeight: 500 }}>from {shortenAddress(account)}</span>
+      </Title>
       <Form onSubmit={handleSubmit}>
         <FormElement>
           <Label>Amount of {tokenSymbol}</Label>
@@ -34,7 +41,9 @@ function TransferForm({ transferTokens, tokenSymbol }) {
           <Label>Recipient address</Label>
           <Input className="form-control" type="text" name="to" required />
         </FormElement>
-        <Button type="submit">Transfer</Button>
+        <Button color="black" type="submit">
+          Transfer
+        </Button>
       </Form>
     </>
   );

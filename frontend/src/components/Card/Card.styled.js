@@ -9,4 +9,5 @@ export const StyledCard = styled.div`
   flex-direction: column;
   gap: 16px;
   width: 100%;
+  background: white;
 `;
