@@ -4,6 +4,8 @@ import WalletProvider from "./contexts/WalletContext";
 import TokenProvider from "./contexts/TokenContext";
 
 const AppContainer = styled.div`
+  display: flex;
+  flex-direction: column;
   position: absolute;
   top: 0;
   bottom: 0;

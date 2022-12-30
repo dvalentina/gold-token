@@ -6,7 +6,7 @@ import { shortenAddress } from "../../utils";
 import { TokenContext } from "../../contexts/TokenContext";
 import { Skeleton } from "@mui/material";
 import useEllipsis from "../../hooks/useEllipsis";
-import { TX_STATUS } from "../../constants";
+import { EMOJI, TX_STATUS } from "../../constants";
 
 function TransferForm() {
   const { account } = useContext(WalletContext);
@@ -30,11 +30,11 @@ function TransferForm() {
       case TX_STATUS.IN_PROGRESS:
         return "Transfering";
       case TX_STATUS.SUCCESS:
-        return "Transfered! B-)";
+        return `Transfered! ${EMOJI.SUCCESS}`;
       case TX_STATUS.ERROR:
-        return "Error :-(";
+        return `Error ${EMOJI.ERROR}`;
       case TX_STATUS.WALLET:
-        return "Go to your wallet :-)";
+        return `Go to your wallet ${EMOJI.NEUTRAL}`;
       default:
         return "Transfer";
     }

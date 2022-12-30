@@ -13,3 +13,9 @@ export const TX_STATUS = {
   ERROR: "error",
   WALLET: "wallet",
 };
+
+export const EMOJI = {
+  SUCCESS: "B-)",
+  NEUTRAL: ":-)",
+  ERROR: ":-(",
+};
