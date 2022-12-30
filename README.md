@@ -1,6 +1,26 @@
 # Study Tokens Hardhat Project
 
-This project is created following these tutorials:
+This project is deployed to gh-pages and available at [dvalentina.github.io/learn-tokens/](https://dvalentina.github.io/learn-tokens/)
+
+## Features
+
+- Connection to a wallet
+- Getting info about an account and a ERC-20 token
+- Transfering tokens
+- Responsive layout
+
+## Tools & Technologies
+
+- React, create-react-app
+- Styled-components
+- CSS Grid
+- Hardhat
+- Ethers
+- Goerli Testnet
+
+## Sources
+
+To create this project, I have followed these tutorials:
 
 [Hardhat's tutorial for beginners](https://hardhat.org/tutorial)\
 [Hardhat Runner Docs](https://hardhat.org/hardhat-runner/docs/getting-started#overview)\
