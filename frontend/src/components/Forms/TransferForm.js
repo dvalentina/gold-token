@@ -1,5 +1,12 @@
 import React, { useContext } from "react";
-import { Title, Label, Form, FormElement, Input } from "./Form.styled";
+import {
+  Title,
+  Subtitle,
+  Label,
+  Form,
+  FormElement,
+  Input,
+} from "./Form.styled";
 import Button from "../Button";
 import { WalletContext } from "../../contexts/WalletContext";
 import { shortenAddress } from "../../utils";
@@ -22,32 +29,28 @@ function TransferForm() {
   };
 
   return (
-    <>
-      <Title>
-        Transfer{" "}
-        <span style={{ fontWeight: 500 }}>from {shortenAddress(account)}</span>
-      </Title>
-      <Form onSubmit={handleSubmit}>
-        <FormElement>
-          <Label>Amount of {symbol}</Label>
-          <Input
-            className="form-control"
-            type="number"
-            step="1"
-            name="amount"
-            placeholder="1"
-            required
-          />
-        </FormElement>
-        <FormElement className="form-group">
-          <Label>Recipient address</Label>
-          <Input className="form-control" type="text" name="to" required />
-        </FormElement>
-        <Button color="black" type="submit">
-          Transfer
-        </Button>
-      </Form>
-    </>
+    <Form onSubmit={handleSubmit}>
+      <Title>Transfer</Title>
+      <Subtitle>From {shortenAddress(account)}</Subtitle>
+      <FormElement>
+        <Label>Amount of {symbol}</Label>
+        <Input
+          className="form-control"
+          type="number"
+          step="1"
+          name="amount"
+          placeholder="1"
+          required
+        />
+      </FormElement>
+      <FormElement className="form-group">
+        <Label>Recipient address</Label>
+        <Input className="form-control" type="text" name="to" required />
+      </FormElement>
+      <Button color="black" type="submit">
+        Transfer
+      </Button>
+    </Form>
   );
 }
 
