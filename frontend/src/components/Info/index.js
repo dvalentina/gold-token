@@ -1,11 +1,16 @@
 import React from "react";
 import { Title, Text, Row } from "./Info.styled";
+import { Skeleton } from "@mui/material";
 
-function Info({ title, data }) {
+function Info({ title, data, loading }) {
   const rows = Object.entries(data).map(([key, value]) => (
     <Row key={key}>
       <Text left>{key}</Text>
-      <Text right>{value}</Text>
+      {loading ? (
+        <Skeleton variant="text" sx={{ fontSize: "16px", width: "120px" }} />
+      ) : (
+        <Text right>{value}</Text>
+      )}
     </Row>
   ));
 

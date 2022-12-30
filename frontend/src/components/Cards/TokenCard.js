@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import Card from "../Card";
 import { WalletContext } from "../../contexts/WalletContext";
 import { TokenContext } from "../../contexts/TokenContext";
@@ -9,6 +9,13 @@ function TokenCard() {
   const { account } = useContext(WalletContext);
   const { name, decimals, totalSupply, symbol, balance } =
     useContext(TokenContext);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (name && decimals && totalSupply && symbol && balance) {
+      setLoading(false);
+    }
+  }, [name, decimals, totalSupply, symbol, balance]);
 
   const data = {
     Name: name,
@@ -20,7 +27,7 @@ function TokenCard() {
 
   return (
     <Card>
-      <Info title="Token Info" data={data} />
+      <Info title="Token Info" data={data} loading={loading} />
     </Card>
   );
 }

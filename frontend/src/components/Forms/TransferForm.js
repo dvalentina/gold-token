@@ -11,6 +11,7 @@ import Button from "../Button";
 import { WalletContext } from "../../contexts/WalletContext";
 import { shortenAddress } from "../../utils";
 import { TokenContext } from "../../contexts/TokenContext";
+import { Skeleton } from "@mui/material";
 
 function TransferForm() {
   const { account } = useContext(WalletContext);
@@ -31,9 +32,19 @@ function TransferForm() {
   return (
     <Form onSubmit={handleSubmit}>
       <Title>Transfer</Title>
-      <Subtitle>From {shortenAddress(account)}</Subtitle>
+      <Subtitle>
+        {account ? (
+          `From ${shortenAddress(account)}`
+        ) : (
+          <Skeleton variant="text" sx={{ fontSize: "16px" }} />
+        )}
+      </Subtitle>
       <FormElement>
-        <Label>Amount of {symbol}</Label>
+        {symbol ? (
+          <Label>Amount of {symbol}</Label>
+        ) : (
+          <Skeleton variant="text" sx={{ fontSize: "16px" }} />
+        )}
         <Input
           className="form-control"
           type="number"
