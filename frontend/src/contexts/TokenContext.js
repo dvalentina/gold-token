@@ -1,11 +1,9 @@
-import React, { useContext } from "react";
+import React from "react";
 import useToken from "../hooks/useToken";
-import { WalletContext } from "./WalletContext";
 
 export const TokenContext = React.createContext();
 
 const TokenProvider = ({ children }) => {
-  const { account } = useContext(WalletContext);
   const {
     name,
     decimals,
@@ -15,7 +13,7 @@ const TokenProvider = ({ children }) => {
     transfer,
     txStatus,
     txError,
-  } = useToken({ account });
+  } = useToken();
   return (
     <TokenContext.Provider
       value={{
