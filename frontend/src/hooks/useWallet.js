@@ -7,18 +7,26 @@ const useWallet = () => {
   const [account, setAccount] = useState(null);
   const [balance, setBalance] = useState(null);
   const [chainId, setChainId] = useState(null);
+  const [disabled, setDisabled] = useState(false);
 
   async function connect() {
     if (window.ethereum) {
+      setDisabled(true);
+
       window.ethereum
         .request({ method: "eth_requestAccounts" })
-        .then(handleAccountsChanged)
+        .then((accounts) => {
+          handleAccountsChanged(accounts);
+        })
         .catch((err) => {
           if (err.code === 4001) {
             console.log("Please connect to MetaMask.");
           } else {
             console.error(err);
           }
+        })
+        .finally(() => {
+          setDisabled(false);
         });
     }
   }
@@ -78,13 +86,16 @@ const useWallet = () => {
   }
 
   async function switchChain() {
+    setDisabled(true);
+
     window.ethereum
       .request({
         method: "wallet_switchEthereumChain",
         params: [{ chainId: toHex(GOERLI_CHAIN_ID) }],
       })
       .then(() => getChainId())
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => setDisabled(false));
   }
 
   useEffect(() => {
@@ -119,6 +130,7 @@ const useWallet = () => {
     connect,
     chainId,
     switchChain,
+    disabled,
   };
 };
 

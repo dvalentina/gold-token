@@ -4,7 +4,8 @@ import useWallet from "../hooks/useWallet";
 export const WalletContext = React.createContext();
 
 const WalletProvider = ({ children }) => {
-  const { account, balance, connect, switchChain, chainId } = useWallet();
+  const { account, balance, connect, switchChain, chainId, disabled } =
+    useWallet();
   return (
     <WalletContext.Provider
       value={{
@@ -13,6 +14,7 @@ const WalletProvider = ({ children }) => {
         connect,
         switchChain,
         chainId,
+        disabled,
       }}
     >
       {children}
