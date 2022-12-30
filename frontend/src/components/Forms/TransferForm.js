@@ -1,21 +1,17 @@
 import React, { useContext } from "react";
-import {
-  Title,
-  Subtitle,
-  Label,
-  Form,
-  FormElement,
-  Input,
-} from "./Form.styled";
+import { Title, Label, Form, FormElement, Input } from "./Form.styled";
 import Button from "../Button";
 import { WalletContext } from "../../contexts/WalletContext";
 import { shortenAddress } from "../../utils";
 import { TokenContext } from "../../contexts/TokenContext";
 import { Skeleton } from "@mui/material";
+import useEllipsis from "../../hooks/useEllipsis";
+import { TX_STATUS } from "../../constants";
 
 function TransferForm() {
   const { account } = useContext(WalletContext);
-  const { symbol, transfer } = useContext(TokenContext);
+  const { symbol, transfer, txStatus } = useContext(TokenContext);
+  const { ellipsis } = useEllipsis();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -29,16 +25,29 @@ function TransferForm() {
     }
   };
 
+  function buttonText() {
+    switch (txStatus) {
+      case TX_STATUS.IN_PROGRESS:
+        return "Transfering";
+      case TX_STATUS.SUCCESS:
+        return "Transfered! B-)";
+      case TX_STATUS.ERROR:
+        return "Error :-(";
+      case TX_STATUS.WALLET:
+        return "Go to your wallet :-)";
+      default:
+        return "Transfer";
+    }
+  }
+
   return (
     <Form onSubmit={handleSubmit}>
-      <Title>Transfer</Title>
-      <Subtitle>
-        {account ? (
-          `From ${shortenAddress(account)}`
-        ) : (
-          <Skeleton variant="text" sx={{ fontSize: "16px" }} />
-        )}
-      </Subtitle>
+      <Title>
+        Transfer{" "}
+        <span style={{ fontWeight: "500" }}>
+          from {shortenAddress(account)}
+        </span>
+      </Title>
       <FormElement>
         {symbol ? (
           <Label>Amount of {symbol}</Label>
@@ -48,9 +57,9 @@ function TransferForm() {
         <Input
           className="form-control"
           type="number"
-          step="1"
+          step="0.01"
           name="amount"
-          placeholder="1"
+          placeholder="1.00"
           required
         />
       </FormElement>
@@ -58,9 +67,17 @@ function TransferForm() {
         <Label>Recipient address</Label>
         <Input className="form-control" type="text" name="to" required />
       </FormElement>
-      <Button color="black" type="submit">
-        Transfer
+      <Button primary type="submit" disabled={txStatus}>
+        <span style={{ position: "relative" }}>
+          {buttonText()}
+          {txStatus === TX_STATUS.IN_PROGRESS ? (
+            <span style={{ position: "absolute" }}>{ellipsis}</span>
+          ) : (
+            ""
+          )}
+        </span>
       </Button>
+      <Button type="reset">Reset</Button>
     </Form>
   );
 }

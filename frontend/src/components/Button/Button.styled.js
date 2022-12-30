@@ -2,25 +2,11 @@ import styled from "styled-components";
 
 export const StyledButton = styled.button`
   align-items: center;
-  background-color: ${({ color }) => {
-    switch (color) {
-      case "black":
-        return "black";
-      default:
-        return "#fff";
-    }
-  }};
+  background-color: ${({ primary }) => (primary ? "black" : "#fff")};
   border-radius: 12px;
   box-shadow: transparent 0 0 0 3px, rgba(18, 18, 18, 0.1) 0 6px 20px;
   box-sizing: border-box;
-  color: ${({ color }) => {
-    switch (color) {
-      case "black":
-        return "white";
-      default:
-        return "#121212";
-    }
-  }};
+  color: ${({ primary }) => (primary ? "white" : "black")};
   cursor: pointer;
   display: inline-flex;
   font-family: Inter, sans-serif;
@@ -42,7 +28,14 @@ export const StyledButton = styled.button`
   height: auto;
   width: 100%;
 
-  &:hover {
+  &:hover:not([disabled]) {
     box-shadow: #121212 0 0 0 3px, transparent 0 0 0 0;
+  }
+
+  &:disabled {
+    background: ${({ primary }) => (primary ? "rgba(0, 0, 0, 0.5)" : "white")};
+    color: ${({ primary }) =>
+      primary ? "rgba(255,255,255, 0.7)" : "rgba(0, 0, 0, 0.7)"};
+    cursor: auto;
   }
 `;

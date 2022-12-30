@@ -4,10 +4,6 @@ export const Title = styled.h3`
   margin: 0;
 `;
 
-export const Subtitle = styled.p`
-  margin: 0;
-`;
-
 export const Label = styled.label`
   font-size: 16px;
   white-space: nowrap;

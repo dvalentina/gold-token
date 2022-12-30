@@ -13,7 +13,7 @@ const TokenProvider = ({ children }) => {
     symbol,
     balance,
     transfer,
-    txBeingSent,
+    txStatus,
     txError,
   } = useToken({ account });
   return (
@@ -25,7 +25,7 @@ const TokenProvider = ({ children }) => {
         symbol,
         balance,
         transfer,
-        txBeingSent,
+        txStatus,
         txError,
       }}
     >

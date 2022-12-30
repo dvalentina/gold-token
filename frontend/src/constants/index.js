@@ -5,3 +5,11 @@ export const BREAKPOINT = {
   S: `(max-width: 500px)`,
   M: `(max-width: 1100px)`,
 };
+
+export const TX_STATUS = {
+  NONE: null,
+  IN_PROGRESS: "in progress",
+  SUCCESS: "success",
+  ERROR: "error",
+  WALLET: "wallet",
+};

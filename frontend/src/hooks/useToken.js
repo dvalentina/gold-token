@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { ethers } from "ethers";
-import { GLD_TOKEN_ADDRESS } from "../constants";
+import { GLD_TOKEN_ADDRESS, TX_STATUS } from "../constants";
 import GLDTokenAbi from "../abi/GLDTokenAbi.json";
 
 const useToken = ({ account }) => {
@@ -10,7 +10,7 @@ const useToken = ({ account }) => {
   const [totalSupply, setTotalSupply] = useState(null);
   const [balance, setBalance] = useState(null);
 
-  const [txBeingSent, setTxBeingSent] = useState(null);
+  const [txStatus, setTxStatus] = useState(TX_STATUS.NONE);
   const [txError, setTxError] = useState(null);
 
   const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -60,10 +60,11 @@ const useToken = ({ account }) => {
 
   function transfer(to, amount) {
     setTxError(null);
+    setTxStatus(TX_STATUS.WALLET);
     token
       .transfer(to, ethers.utils.parseUnits(amount))
       .then((tx) => {
-        setTxBeingSent(tx.hash);
+        setTxStatus(TX_STATUS.IN_PROGRESS);
         return tx.wait();
       })
       .then((receipt) => {
@@ -80,9 +81,10 @@ const useToken = ({ account }) => {
 
         console.error(error);
         setTxError(error);
+        setTxStatus(TX_STATUS.NONE);
       })
       .finally(() => {
-        setTxBeingSent(null);
+        setTxStatus(TX_STATUS.SUCCESS);
         getBalance();
       });
   }
@@ -107,6 +109,12 @@ const useToken = ({ account }) => {
     }
   }, [account]);
 
+  useEffect(() => {
+    if (txStatus === TX_STATUS.SUCCESS || txStatus === TX_STATUS.ERROR) {
+      setTimeout(() => setTxStatus(TX_STATUS.NONE), 2000);
+    }
+  });
+
   return {
     name,
     decimals,
@@ -114,7 +122,7 @@ const useToken = ({ account }) => {
     symbol,
     balance,
     transfer,
-    txBeingSent,
+    txStatus,
     txError,
   };
 };
