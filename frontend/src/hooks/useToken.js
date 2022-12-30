@@ -84,16 +84,24 @@ const useToken = ({ account }) => {
       .finally(setTxBeingSent(null));
   }
 
-  useEffect(() => {
+  function getTokenInfo() {
     getName();
     getDecimals();
     getSymbol();
     getTotalSupply();
     getBalance();
+  }
+
+  useEffect(() => {
+    if (account) {
+      getTokenInfo();
+    }
   }, []);
 
   useEffect(() => {
-    getBalance();
+    if (account) {
+      getTokenInfo();
+    }
   }, [account]);
 
   return {
