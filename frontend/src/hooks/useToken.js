@@ -64,7 +64,7 @@ const useToken = ({ account }) => {
       .transfer(to, ethers.utils.parseUnits(amount))
       .then((tx) => {
         setTxBeingSent(tx.hash);
-        return tx.wait;
+        return tx.wait();
       })
       .then((receipt) => {
         if (receipt.status === 0) {
@@ -81,7 +81,10 @@ const useToken = ({ account }) => {
         console.error(error);
         setTxError(error);
       })
-      .finally(setTxBeingSent(null));
+      .finally(() => {
+        setTxBeingSent(null);
+        getBalance();
+      });
   }
 
   function getTokenInfo() {
