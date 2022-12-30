@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { BREAKPOINT } from "../../constants";
 
 export const StyledCard = styled.div`
   border-radius: 12px;
@@ -11,7 +12,7 @@ export const StyledCard = styled.div`
   width: 100%;
   background: white;
 
-  @media (max-width: 500px) {
+  @media ${BREAKPOINT.S} {
     border-radius: 0;
   }
 `;
