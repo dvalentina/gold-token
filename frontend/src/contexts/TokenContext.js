@@ -4,16 +4,8 @@ import useToken from "../hooks/useToken";
 export const TokenContext = React.createContext();
 
 const TokenProvider = ({ children }) => {
-  const {
-    name,
-    decimals,
-    totalSupply,
-    symbol,
-    balance,
-    transfer,
-    txStatus,
-    txError,
-  } = useToken();
+  const { name, decimals, totalSupply, symbol, balance, transfer, txStatus } =
+    useToken();
   return (
     <TokenContext.Provider
       value={{
@@ -24,7 +16,6 @@ const TokenProvider = ({ children }) => {
         balance,
         transfer,
         txStatus,
-        txError,
       }}
     >
       {children}

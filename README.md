@@ -30,3 +30,5 @@ To create this project, I have followed these tutorials:
 
 [How to Connect Your Dapp With MetaMask Using Ethers.js](https://www.quicknode.com/guides/web3-sdks/how-to-connect-your-dapp-with-metamask-using-ethersjs)\
 [MetaMask Docs](https://docs.metamask.io/guide/ethereum-provider.html#using-the-provider)
+
+[Notification system](https://dev.to/kevjose/building-a-reusable-notification-system-with-react-hooks-and-context-api-2phj)

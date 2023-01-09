@@ -3,6 +3,7 @@ import MainPage from "./pages/MainPage";
 import WalletProvider from "./contexts/WalletContext";
 import TokenProvider from "./contexts/TokenContext";
 import NoWalletPage from "./pages/NoWalletPage";
+import ToastProvider from "./contexts/ToastContext";
 
 const AppContainer = styled.div`
   display: flex;
@@ -17,15 +18,17 @@ const AppContainer = styled.div`
 function App() {
   return (
     <AppContainer>
-      {window.ethereum ? (
-        <WalletProvider>
-          <TokenProvider>
-            <MainPage />
-          </TokenProvider>
-        </WalletProvider>
-      ) : (
-        <NoWalletPage />
-      )}
+      <ToastProvider>
+        {window.ethereum ? (
+          <WalletProvider>
+            <TokenProvider>
+              <MainPage />
+            </TokenProvider>
+          </WalletProvider>
+        ) : (
+          <NoWalletPage />
+        )}
+      </ToastProvider>
     </AppContainer>
   );
 }

@@ -14,9 +14,11 @@ import { GOERLI_CHAIN_ID } from "../../constants";
 import GoerliLogo from "../../components/GoerliLogo";
 import TransferCard from "../../components/Cards/TransferCard";
 import Grid from "../../components/Grid";
+// import { ToastContext, ADD } from "../../contexts/ToastContext";
 
 function MainPage() {
   const { account, chainId } = useContext(WalletContext);
+  // const { toastDispatch } = useContext(ToastContext);
 
   return (
     <Grid>
@@ -40,6 +42,19 @@ function MainPage() {
           <ConnectWallet />
         </WalletGrid>
       )}
+      {/* <button
+        onClick={() => {
+          toastDispatch({
+            type: ADD,
+            payload: {
+              content: "Hello World",
+              status: "success",
+            },
+          });
+        }}
+      >
+        notif
+      </button> */}
     </Grid>
   );
 }

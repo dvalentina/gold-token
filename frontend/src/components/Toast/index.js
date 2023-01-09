@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { EMOJI } from "../../constants";
+import { ToastContext, REMOVE } from "../../contexts/ToastContext";
 import { Container, Text, Emoji, Close } from "./Toast.styled";
 
-function Toast({ status, text }) {
-  const [visible, setVisible] = useState(true);
+function Toast({ status, content, id }) {
+  const { toastDispatch } = useContext(ToastContext);
 
   useState(() => {
-    const interval = setInterval(() => setVisible(false), 10000);
+    const interval = setInterval(() => handleClose(), 10000);
     return () => clearInterval(interval);
   });
 
@@ -22,16 +23,16 @@ function Toast({ status, text }) {
   }
 
   const handleClose = () => {
-    setVisible(false);
+    toastDispatch({ type: REMOVE, payload: { id: id } });
   };
 
-  return visible ? (
+  return (
     <Container>
       <Emoji>{getEmoji()}</Emoji>
-      <Text>{text}</Text>
+      <Text>{content}</Text>
       <Close onClick={handleClose}>X</Close>
     </Container>
-  ) : null;
+  );
 }
 
 export default Toast;

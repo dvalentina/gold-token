@@ -1,13 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { ethers } from "ethers";
 import { GOERLI_CHAIN_ID } from "../constants";
 import { toHex } from "../utils";
+import { ToastContext, ADD } from "../contexts/ToastContext";
 
 const useWallet = () => {
   const [account, setAccount] = useState(null);
   const [balance, setBalance] = useState(null);
   const [chainId, setChainId] = useState(null);
   const [disabled, setDisabled] = useState(false);
+  const { toastDispatch } = useContext(ToastContext);
 
   async function connect() {
     if (window.ethereum) {
@@ -23,6 +25,13 @@ const useWallet = () => {
             console.log("Please connect to MetaMask.");
           } else {
             console.error(err);
+            toastDispatch({
+              type: ADD,
+              payload: {
+                content: err,
+                status: "error",
+              },
+            });
           }
         })
         .finally(() => {
@@ -66,6 +75,13 @@ const useWallet = () => {
         .then((balance) => setBalance(ethers.utils.formatEther(balance)))
         .catch((err) => {
           console.log(err);
+          toastDispatch({
+            type: ADD,
+            payload: {
+              content: err,
+              status: "error",
+            },
+          });
         });
     }
   }

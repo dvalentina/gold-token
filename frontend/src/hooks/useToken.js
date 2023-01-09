@@ -3,9 +3,11 @@ import { ethers } from "ethers";
 import { GLD_TOKEN_ADDRESS, GOERLI_CHAIN_ID, TX_STATUS } from "../constants";
 import GLDTokenAbi from "../abi/GLDTokenAbi.json";
 import { WalletContext } from "../contexts/WalletContext";
+import { ToastContext, ADD } from "../contexts/ToastContext";
 
 const useToken = () => {
   const { account, chainId } = useContext(WalletContext);
+  const { toastDispatch } = useContext(ToastContext);
 
   const [name, setName] = useState(null);
   const [decimals, setDecimals] = useState(null);
@@ -14,7 +16,6 @@ const useToken = () => {
   const [balance, setBalance] = useState(null);
 
   const [txStatus, setTxStatus] = useState(TX_STATUS.NONE);
-  const [txError, setTxError] = useState(null);
 
   const provider = new ethers.providers.Web3Provider(window.ethereum);
   const signer = provider.getSigner();
@@ -75,7 +76,6 @@ const useToken = () => {
 
   function transfer(to, amount) {
     if (correctChain) {
-      setTxError(null);
       setTxStatus(TX_STATUS.WALLET);
       token
         .transfer(to, ethers.utils.parseUnits(amount))
@@ -87,21 +87,36 @@ const useToken = () => {
           if (receipt.status === 0) {
             throw new Error("Transaction failed");
           }
-          // update users balance?
+          setTxStatus(TX_STATUS.SUCCESS);
+          toastDispatch({
+            type: ADD,
+            payload: {
+              content: "Transaction successful!",
+              status: "success",
+            },
+          });
+          getBalance();
         })
         .catch((error) => {
-          if (error.code === 4001) {
-            // Transaction is rejected by user
+          setTxStatus(TX_STATUS.ERROR);
+          if (error.code === "ACTION_REJECTED") {
+            toastDispatch({
+              type: ADD,
+              payload: {
+                content: "You rejected the transaction",
+                status: "error",
+              },
+            });
             return;
           }
-
+          toastDispatch({
+            type: ADD,
+            payload: {
+              content: "Some error occurred",
+              status: "error",
+            },
+          });
           console.error(error);
-          setTxError(error);
-          setTxStatus(TX_STATUS.NONE);
-        })
-        .finally(() => {
-          setTxStatus(TX_STATUS.SUCCESS);
-          getBalance();
         });
     }
   }
@@ -136,7 +151,6 @@ const useToken = () => {
     balance,
     transfer,
     txStatus,
-    txError,
   };
 };
 

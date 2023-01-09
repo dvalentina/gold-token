@@ -26,6 +26,7 @@ export const Emoji = styled.p`
   margin: 0;
   font-weight: 600;
   width: auto;
+  white-space: nowrap;
 `;
 
 export const Close = styled.button`
