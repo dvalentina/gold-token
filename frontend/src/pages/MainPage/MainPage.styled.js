@@ -66,6 +66,22 @@ export const TransferGrid = styled.div`
   }
 `;
 
+export const MintGrid = styled.div`
+  display: flex;
+  grid-row: 2 / 4;
+  grid-column: 4 / 6;
+
+  @media ${BREAKPOINT.M} {
+    grid-column: 2;
+    grid-row: 4;
+  }
+
+  @media ${BREAKPOINT.S} {
+    grid-column: 1;
+    grid-row: 4;
+  }
+`;
+
 export const WalletGrid = styled.div`
   display: flex;
   grid-row: 2;

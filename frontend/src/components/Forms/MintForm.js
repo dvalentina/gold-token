@@ -1,16 +1,13 @@
 import React, { useContext } from "react";
 import { Title, Label, Form, FormElement, Input } from "./Form.styled";
 import Button from "../Button";
-import { WalletContext } from "../../contexts/WalletContext";
-import { shortenAddress } from "../../utils";
 import { TokenContext } from "../../contexts/TokenContext";
 import { Skeleton } from "@mui/material";
 import useEllipsis from "../../hooks/useEllipsis";
 import { EMOJI, TX_STATUS } from "../../constants";
 
-function TransferForm() {
-  const { account } = useContext(WalletContext);
-  const { symbol, transfer, transferStatus } = useContext(TokenContext);
+function MintForm() {
+  const { symbol, mint, mintStatus } = useContext(TokenContext);
   const { ellipsis } = useEllipsis();
 
   const handleSubmit = (event) => {
@@ -21,33 +18,28 @@ function TransferForm() {
     const amount = formData.get("amount");
 
     if (to && amount) {
-      transfer(to, amount);
+      mint(to, amount);
     }
   };
 
   function buttonText() {
-    switch (transferStatus) {
+    switch (mintStatus) {
       case TX_STATUS.IN_PROGRESS:
-        return "Transfering";
+        return "Minting";
       case TX_STATUS.SUCCESS:
-        return `Transfered! ${EMOJI.SUCCESS}`;
+        return `Minted! ${EMOJI.SUCCESS}`;
       case TX_STATUS.ERROR:
         return `Error ${EMOJI.ERROR}`;
       case TX_STATUS.WALLET:
         return `Go to your wallet ${EMOJI.NEUTRAL}`;
       default:
-        return "Transfer";
+        return "Mint";
     }
   }
 
   return (
     <Form onSubmit={handleSubmit}>
-      <Title>
-        Transfer{" "}
-        <span style={{ fontWeight: "500" }}>
-          from {shortenAddress(account)}
-        </span>
-      </Title>
+      <Title>Mint</Title>
       <FormElement>
         {symbol ? (
           <Label>Amount of {symbol}</Label>
@@ -67,10 +59,10 @@ function TransferForm() {
         <Label>Recipient address</Label>
         <Input className="form-control" type="text" name="to" required />
       </FormElement>
-      <Button primary type="submit" disabled={transferStatus}>
+      <Button primary type="submit" disabled={mintStatus}>
         <span style={{ position: "relative" }}>
           {buttonText()}
-          {transferStatus === TX_STATUS.IN_PROGRESS ? (
+          {mintStatus === TX_STATUS.IN_PROGRESS ? (
             <span style={{ position: "absolute" }}>{ellipsis}</span>
           ) : (
             ""
@@ -82,4 +74,4 @@ function TransferForm() {
   );
 }
 
-export default TransferForm;
+export default MintForm;

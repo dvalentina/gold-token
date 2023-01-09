@@ -5,6 +5,7 @@ import {
   LogoGrid,
   TransferGrid,
   WalletGrid,
+  MintGrid,
 } from "./MainPage.styled";
 import ConnectWallet from "../../components/ConnectWallet";
 import TokenCard from "../../components/Cards/TokenCard";
@@ -14,11 +15,10 @@ import { GOERLI_CHAIN_ID } from "../../constants";
 import GoerliLogo from "../../components/GoerliLogo";
 import TransferCard from "../../components/Cards/TransferCard";
 import Grid from "../../components/Grid";
-// import { ToastContext, ADD } from "../../contexts/ToastContext";
+import MintCard from "../../components/Cards/MintCard";
 
 function MainPage() {
   const { account, chainId } = useContext(WalletContext);
-  // const { toastDispatch } = useContext(ToastContext);
 
   return (
     <Grid>
@@ -36,25 +36,15 @@ function MainPage() {
           <TransferGrid>
             <TransferCard />
           </TransferGrid>
+          {/* <MintGrid>
+            <MintCard />
+          </MintGrid> */}
         </>
       ) : (
         <WalletGrid>
           <ConnectWallet />
         </WalletGrid>
       )}
-      {/* <button
-        onClick={() => {
-          toastDispatch({
-            type: ADD,
-            payload: {
-              content: "Hello World",
-              status: "success",
-            },
-          });
-        }}
-      >
-        notif
-      </button> */}
     </Grid>
   );
 }

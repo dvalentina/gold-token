@@ -15,7 +15,8 @@ const useToken = () => {
   const [totalSupply, setTotalSupply] = useState(null);
   const [balance, setBalance] = useState(null);
 
-  const [txStatus, setTxStatus] = useState(TX_STATUS.NONE);
+  const [transferStatus, setTransferStatus] = useState(TX_STATUS.NONE);
+  const [mintStatus, setMintStatus] = useState(TX_STATUS.NONE);
 
   const provider = new ethers.providers.Web3Provider(window.ethereum);
   const signer = provider.getSigner();
@@ -76,29 +77,77 @@ const useToken = () => {
 
   function transfer(to, amount) {
     if (correctChain) {
-      setTxStatus(TX_STATUS.WALLET);
+      setTransferStatus(TX_STATUS.WALLET);
       token
         .transfer(to, ethers.utils.parseUnits(amount))
         .then((tx) => {
-          setTxStatus(TX_STATUS.IN_PROGRESS);
+          setTransferStatus(TX_STATUS.IN_PROGRESS);
           return tx.wait();
         })
         .then((receipt) => {
           if (receipt.status === 0) {
-            throw new Error("Transaction failed");
+            throw new Error("Transfer failed");
           }
-          setTxStatus(TX_STATUS.SUCCESS);
+          setTransferStatus(TX_STATUS.SUCCESS);
           toastDispatch({
             type: ADD,
             payload: {
-              content: "Transaction successful!",
+              content: "Transfer successful!",
               status: "success",
             },
           });
           getBalance();
         })
         .catch((error) => {
-          setTxStatus(TX_STATUS.ERROR);
+          setTransferStatus(TX_STATUS.ERROR);
+          if (error.code === "ACTION_REJECTED") {
+            toastDispatch({
+              type: ADD,
+              payload: {
+                content: "You rejected the transfer",
+                status: "error",
+              },
+            });
+            return;
+          }
+          toastDispatch({
+            type: ADD,
+            payload: {
+              content: "Some error occurred",
+              status: "error",
+            },
+          });
+          console.error(error);
+        });
+    }
+  }
+
+  function mint(to, amount) {
+    if (correctChain) {
+      setMintStatus(TX_STATUS.WALLET);
+      token
+        .mint(to, ethers.utils.parseUnits(amount))
+        .then((tx) => {
+          setMintStatus(TX_STATUS.IN_PROGRESS);
+          return tx.wait();
+        })
+        .then((receipt) => {
+          if (receipt.status === 0) {
+            throw new Error("Mint failed");
+          }
+          setMintStatus(TX_STATUS.SUCCESS);
+          toastDispatch({
+            type: ADD,
+            payload: {
+              content: "Mint successful!",
+              status: "success",
+            },
+          });
+          getBalance();
+          getTotalSupply();
+        })
+        .catch((error) => {
+          setMintStatus(TX_STATUS.ERROR);
           if (error.code === "ACTION_REJECTED") {
             toastDispatch({
               type: ADD,
@@ -138,8 +187,14 @@ const useToken = () => {
   }, [account, chainId]); // chainId
 
   useEffect(() => {
-    if (txStatus === TX_STATUS.SUCCESS || txStatus === TX_STATUS.ERROR) {
-      setTimeout(() => setTxStatus(TX_STATUS.NONE), 2000);
+    if (
+      transferStatus === TX_STATUS.SUCCESS ||
+      transferStatus === TX_STATUS.ERROR
+    ) {
+      setTimeout(() => setTransferStatus(TX_STATUS.NONE), 2000);
+    }
+    if (mintStatus === TX_STATUS.SUCCESS || mintStatus === TX_STATUS.ERROR) {
+      setTimeout(() => setMintStatus(TX_STATUS.NONE), 2000);
     }
   });
 
@@ -150,7 +205,9 @@ const useToken = () => {
     symbol,
     balance,
     transfer,
-    txStatus,
+    transferStatus,
+    mint,
+    mintStatus,
   };
 };
 
