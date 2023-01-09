@@ -1,25 +1,25 @@
 import React, { useContext } from "react";
 import {
-  Container,
   AccountGrid,
   TokenGrid,
   LogoGrid,
   TransferGrid,
   WalletGrid,
 } from "./MainPage.styled";
-import ConnectWallet from "../ConnectWallet";
-import TokenCard from "../Cards/TokenCard";
-import AccountCard from "../Cards/AccountCard";
+import ConnectWallet from "../../components/ConnectWallet";
+import TokenCard from "../../components/Cards/TokenCard";
+import AccountCard from "../../components/Cards/AccountCard";
 import { WalletContext } from "../../contexts/WalletContext";
 import { GOERLI_CHAIN_ID } from "../../constants";
-import GoerliLogo from "../GoerliLogo";
-import TransferCard from "../Cards/TransferCard";
+import GoerliLogo from "../../components/GoerliLogo";
+import TransferCard from "../../components/Cards/TransferCard";
+import Grid from "../../components/Grid";
 
 function MainPage() {
   const { account, chainId } = useContext(WalletContext);
 
   return (
-    <Container>
+    <Grid>
       <LogoGrid>
         <GoerliLogo />
       </LogoGrid>
@@ -40,7 +40,7 @@ function MainPage() {
           <ConnectWallet />
         </WalletGrid>
       )}
-    </Container>
+    </Grid>
   );
 }
 

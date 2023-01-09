@@ -1,7 +1,8 @@
 import styled from "styled-components";
-import MainPage from "./components/MainPage";
+import MainPage from "./pages/MainPage";
 import WalletProvider from "./contexts/WalletContext";
 import TokenProvider from "./contexts/TokenContext";
+import NoWalletPage from "./pages/NoWalletPage";
 
 const AppContainer = styled.div`
   display: flex;
@@ -15,13 +16,17 @@ const AppContainer = styled.div`
 
 function App() {
   return (
-    <WalletProvider>
-      <TokenProvider>
-        <AppContainer>
-          <MainPage />
-        </AppContainer>
-      </TokenProvider>
-    </WalletProvider>
+    <AppContainer>
+      {window.ethereum ? (
+        <WalletProvider>
+          <TokenProvider>
+            <MainPage />
+          </TokenProvider>
+        </WalletProvider>
+      ) : (
+        <NoWalletPage />
+      )}
+    </AppContainer>
   );
 }
 

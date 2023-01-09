@@ -11,10 +11,12 @@ export const Text = styled.p`
   margin-left: ${({ right }) => (right ? "auto" : 0)};
 
   font-size: 16px;
-  white-space: nowrap;
+  white-space: ${({ wrap }) => (wrap ? "wrap" : "nowrap")};
 `;
 
 export const Row = styled.div`
   display: flex;
   gap: 24px;
 `;
+
+export const Link = styled.a``;
