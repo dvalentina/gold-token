@@ -20,6 +20,8 @@ This project is deployed to gh-pages and available at [dvalentina.github.io/lear
 
 ## Sources
 
+[Görli Testnet Logo](https://github.com/goerli/goer-logo)
+
 To create this project, I have followed these tutorials:
 
 [Hardhat's tutorial for beginners](https://hardhat.org/tutorial)\
