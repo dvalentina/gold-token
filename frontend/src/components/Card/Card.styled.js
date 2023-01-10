@@ -8,9 +8,11 @@ export const StyledCard = styled.div`
 
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: 16px;
   width: 100%;
   background: white;
+  box-sizing: border-box;
 
   @media ${BREAKPOINT.S} {
     border-radius: 0;

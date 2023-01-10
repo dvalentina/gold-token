@@ -19,3 +19,9 @@ export const EMOJI = {
   NEUTRAL: ":-)",
   ERROR: ":-(",
 };
+
+export const FORM = {
+  TRANSFER: "transfer",
+  MINT: "mint",
+  BURN: "burn",
+};

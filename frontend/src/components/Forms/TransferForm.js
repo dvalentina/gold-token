@@ -6,7 +6,8 @@ import Form from "../Form";
 
 function TransferForm() {
   const { account } = useContext(WalletContext);
-  const { transfer, transferStatus } = useContext(TokenContext);
+  const { transfer, transferStatus, isMinter, isBurner } =
+    useContext(TokenContext);
 
   return (
     <Form
@@ -15,6 +16,7 @@ function TransferForm() {
       name="transfer"
       subtitle={`from ${shortenAddress(account)}`}
       targetLabel="to"
+      long={!isMinter && !isBurner}
     />
   );
 }

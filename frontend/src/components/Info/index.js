@@ -2,7 +2,7 @@ import React from "react";
 import { Title, Text, Row } from "./Info.styled";
 import { Skeleton } from "@mui/material";
 
-function Info({ title, data, loading }) {
+function Info({ title, data, loading, additional }) {
   const rows = Object.entries(data).map(([key, value]) => (
     <Row key={key}>
       <Text left>{key}</Text>
@@ -13,6 +13,16 @@ function Info({ title, data, loading }) {
       )}
     </Row>
   ));
+
+  if (additional) {
+    rows.push(
+      additional.map((value) => (
+        <Row key={value}>
+          <Text>{value}</Text>
+        </Row>
+      ))
+    );
+  }
 
   return (
     <>

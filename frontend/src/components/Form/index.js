@@ -5,6 +5,7 @@ import {
   Form as StyledForm,
   FormElement,
   Input,
+  Subtitle,
 } from "../Form/Form.styled";
 import Button from "../Button";
 import { TokenContext } from "../../contexts/TokenContext";
@@ -13,7 +14,7 @@ import useEllipsis from "../../hooks/useEllipsis";
 import { EMOJI, TX_STATUS } from "../../constants";
 import { firstToUpperCase } from "../../utils";
 
-function Form({ onSubmit, status, name, subtitle, targetLabel }) {
+function Form({ onSubmit, status, name, subtitle, targetLabel, long }) {
   const { symbol } = useContext(TokenContext);
   const { ellipsis } = useEllipsis();
 
@@ -50,10 +51,11 @@ function Form({ onSubmit, status, name, subtitle, targetLabel }) {
     <StyledForm onSubmit={handleSubmit}>
       <Title>
         {firstToUpperCase(name)}
-        {subtitle ? (
+        {subtitle && !long ? (
           <span style={{ fontWeight: "500" }}> {subtitle}</span>
         ) : null}
       </Title>
+      {subtitle && long ? <Subtitle>{subtitle}</Subtitle> : null}
       <FormElement>
         {symbol ? (
           <Label>Amount of {symbol}</Label>
