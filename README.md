@@ -1,6 +1,6 @@
 # Study Tokens Hardhat Project
 
-This project is deployed to gh-pages and available at [dvalentina.github.io/learn-tokens/](https://dvalentina.github.io/learn-tokens/)
+This project is deployed to gh-pages and available at [dvalentina.github.io/gold-token/](https://dvalentina.github.io/gold-token/)
 
 ## Features
 
