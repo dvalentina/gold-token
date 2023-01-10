@@ -14,8 +14,10 @@ const TokenProvider = ({ children }) => {
     transferStatus,
     mint,
     mintStatus,
+    isMinter,
     burn,
     burnStatus,
+    isBurner,
   } = useToken();
   return (
     <TokenContext.Provider
@@ -29,8 +31,10 @@ const TokenProvider = ({ children }) => {
         transferStatus,
         mint,
         mintStatus,
+        isMinter,
         burn,
         burnStatus,
+        isBurner,
       }}
     >
       {children}

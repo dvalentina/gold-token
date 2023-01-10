@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
+import { TokenContext } from "../../contexts/TokenContext";
 import Card from "../Card";
 import MintForm from "../Forms/MintForm";
 
 function MintCard() {
-  return (
+  const { isMinter } = useContext(TokenContext);
+
+  return isMinter ? (
     <Card>
       <MintForm />
     </Card>
-  );
+  ) : null;
 }
 
 export default MintCard;

@@ -19,6 +19,9 @@ const useToken = () => {
   const [mintStatus, setMintStatus] = useState(TX_STATUS.NONE);
   const [burnStatus, setBurnStatus] = useState(TX_STATUS.NONE);
 
+  const [isMinter, setIsMinter] = useState(false);
+  const [isBurner, setIsBurner] = useState(false);
+
   const provider = new ethers.providers.Web3Provider(window.ethereum);
   const signer = provider.getSigner();
   const token = new ethers.Contract(GLD_TOKEN_ADDRESS, GLDTokenAbi, signer);
@@ -255,12 +258,42 @@ const useToken = () => {
     }
   }
 
+  function checkIsMinter() {
+    const minterHash = ethers.utils.solidityKeccak256(
+      ["string"],
+      ["MINTER_ROLE"]
+    );
+    token
+      .hasRole(minterHash, account)
+      .then(setIsMinter)
+      .catch((error) => console.log(error));
+  }
+
+  function checkIsBurner() {
+    const burnerHash = ethers.utils.solidityKeccak256(
+      ["string"],
+      ["BURNER_ROLE"]
+    );
+    token
+      .hasRole(burnerHash, account)
+      .then(setIsBurner)
+      .catch((error) => console.log(error));
+  }
+
+  function checkRoles() {
+    if (account) {
+      checkIsBurner();
+      checkIsMinter();
+    }
+  }
+
   function getTokenInfo() {
     getName();
     getDecimals();
     getSymbol();
     getTotalSupply();
     getBalance();
+    checkRoles();
   }
 
   useEffect(() => {
@@ -296,8 +329,10 @@ const useToken = () => {
     transferStatus,
     mint,
     mintStatus,
+    isMinter,
     burn,
     burnStatus,
+    isBurner,
   };
 };
 
