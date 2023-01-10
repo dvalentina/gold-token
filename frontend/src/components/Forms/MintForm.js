@@ -6,13 +6,7 @@ function MintForm() {
   const { mint, mintStatus } = useContext(TokenContext);
 
   return (
-    <Form
-      onSubmit={mint}
-      status={mintStatus}
-      buttonText="mint"
-      title="Mint"
-      targetLabel="to"
-    />
+    <Form onSubmit={mint} status={mintStatus} name="mint" targetLabel="to" />
   );
 }
 

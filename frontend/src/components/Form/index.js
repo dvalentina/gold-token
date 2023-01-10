@@ -13,7 +13,7 @@ import useEllipsis from "../../hooks/useEllipsis";
 import { EMOJI, TX_STATUS } from "../../constants";
 import { firstToUpperCase } from "../../utils";
 
-function Form({ onSubmit, status, buttonText, title, subtitle, targetLabel }) {
+function Form({ onSubmit, status, name, subtitle, targetLabel }) {
   const { symbol } = useContext(TokenContext);
   const { ellipsis } = useEllipsis();
 
@@ -30,7 +30,7 @@ function Form({ onSubmit, status, buttonText, title, subtitle, targetLabel }) {
   };
 
   function getButtonText() {
-    const action = firstToUpperCase(buttonText);
+    const action = firstToUpperCase(name);
 
     switch (status) {
       case TX_STATUS.IN_PROGRESS:
@@ -49,7 +49,7 @@ function Form({ onSubmit, status, buttonText, title, subtitle, targetLabel }) {
   return (
     <StyledForm onSubmit={handleSubmit}>
       <Title>
-        {title}
+        {firstToUpperCase(name)}
         {subtitle ? (
           <span style={{ fontWeight: "500" }}> {subtitle}</span>
         ) : null}

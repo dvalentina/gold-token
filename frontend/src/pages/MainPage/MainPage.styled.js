@@ -68,17 +68,33 @@ export const TransferGrid = styled.div`
 
 export const MintGrid = styled.div`
   display: flex;
-  grid-row: 2 / 4;
-  grid-column: 4 / 6;
+  grid-row: 4 / 6;
+  grid-column: 2 / 4;
 
   @media ${BREAKPOINT.M} {
     grid-column: 2;
-    grid-row: 4;
+    grid-row: 5;
   }
 
   @media ${BREAKPOINT.S} {
     grid-column: 1;
-    grid-row: 4;
+    grid-row: 5;
+  }
+`;
+
+export const BurnGrid = styled.div`
+  display: flex;
+  grid-row: 4 / 6;
+  grid-column: 4 / 6;
+
+  @media ${BREAKPOINT.M} {
+    grid-column: 2;
+    grid-row: 6;
+  }
+
+  @media ${BREAKPOINT.S} {
+    grid-column: 1;
+    grid-row: 6;
   }
 `;
 

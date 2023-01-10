@@ -12,8 +12,7 @@ function TransferForm() {
     <Form
       onSubmit={transfer}
       status={transferStatus}
-      buttonText="transfer"
-      title="Transfer"
+      name="transfer"
       subtitle={`from ${shortenAddress(account)}`}
       targetLabel="to"
     />
