@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { FORM } from "../../constants";
+import { FORM, TX_STATUS } from "../../constants";
 import BurnCard from "../Cards/BurnCard";
 import MintCard from "../Cards/MintCard";
 import TransferCard from "../Cards/TransferCard";
@@ -10,11 +10,17 @@ import {
 import { TokenContext } from "../../contexts/TokenContext";
 
 function FormSwitcher() {
-  const { isMinter, isBurner } = useContext(TokenContext);
+  const { isMinter, isBurner, mintStatus, burnStatus, transferStatus } =
+    useContext(TokenContext);
   const [chosen, setChosen] = useState(FORM.TRANSFER);
 
   const options = [FORM.TRANSFER];
   const ordinaryUser = !isBurner && !isMinter;
+
+  const disabled =
+    mintStatus === TX_STATUS.IN_PROGRESS ||
+    burnStatus === TX_STATUS.IN_PROGRESS ||
+    transferStatus === TX_STATUS.IN_PROGRESS;
 
   if (isMinter) {
     options.push(FORM.MINT);
@@ -51,6 +57,7 @@ function FormSwitcher() {
           chosen={chosen}
           options={options}
           onClick={handleChoose}
+          disabled={disabled}
         />
       )}
       {switchForms()}
