@@ -23,7 +23,7 @@ function TransactionCard() {
 
   return hash ? (
     <Card>
-      <Row wrap>
+      <Row $wrap>
         <Text>
           Transaction hash: {shortenAddress(hash)}{" "}
           <IconButton onClick={handleCopy}>

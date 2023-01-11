@@ -11,11 +11,11 @@ function NoWalletCard() {
   return (
     <Card>
       <Title>No wallet detected {EMOJI.ERROR}</Title>
-      <Text wrap>
+      <Text $wrap>
         To use this website, you will need an ethereum wallet to be installed in
         your browser.
       </Text>
-      <Text wrap>MetaMask suits most platforms.</Text>
+      <Text $wrap>MetaMask suits most platforms.</Text>
       <Link link={metamaskAppDeepLink} text="Install MetaMask" />
     </Card>
   );

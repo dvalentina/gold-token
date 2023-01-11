@@ -6,6 +6,8 @@ import {
   FormGrid,
   WalletGrid,
   TransactionGrid,
+  AboutContainer,
+  AboutGrid,
 } from "./MainPage.styled";
 import ConnectWallet from "../../components/ConnectWallet";
 import TokenCard from "../../components/Cards/TokenCard";
@@ -16,6 +18,7 @@ import GoerliLogo from "../../components/GoerliLogo";
 import Grid from "../../components/Grid";
 import FormSwitcher from "../../components/FormSwitcher";
 import TransactionCard from "../../components/Cards/TransactionCard";
+import About from "../../components/About";
 
 function MainPage() {
   const { account, chainId } = useContext(WalletContext);
@@ -25,6 +28,9 @@ function MainPage() {
       <LogoGrid>
         <GoerliLogo />
       </LogoGrid>
+      <AboutGrid>
+        <About />
+      </AboutGrid>
       {account && chainId === GOERLI_CHAIN_ID ? (
         <>
           <AccountGrid>
