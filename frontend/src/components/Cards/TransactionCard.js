@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Text, Row, IconButton } from "../Info/Info.styled";
 import { TokenContext } from "../../contexts/TokenContext";
 import Card from "../Card";
@@ -20,6 +20,13 @@ function TransactionCard() {
       },
     });
   };
+
+  useEffect(() => {
+    const app = document.getElementById("app");
+    if (hash) {
+      app.scrollTo({ left: 0, top: app.scrollHeight, behaviour: "smooth" });
+    }
+  }, [hash]);
 
   return hash ? (
     <Card>

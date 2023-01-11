@@ -13,11 +13,12 @@ const AppContainer = styled.div`
   bottom: 0;
   right: 0;
   left: 0;
+  overflow: scroll;
 `;
 
 function App() {
   return (
-    <AppContainer>
+    <AppContainer id="app">
       <ToastProvider>
         {window.ethereum ? (
           <WalletProvider>
