@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { FORM, TX_STATUS } from "../../constants";
 import BurnCard from "../Cards/BurnCard";
 import MintCard from "../Cards/MintCard";
@@ -16,6 +16,10 @@ function FormSwitcher() {
 
   const options = [FORM.TRANSFER];
   const ordinaryUser = !isBurner && !isMinter;
+
+  useEffect(() => {
+    setChosen(FORM.TRANSFER);
+  }, [isMinter, isBurner]);
 
   const disabled =
     mintStatus === TX_STATUS.IN_PROGRESS ||
