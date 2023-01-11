@@ -5,11 +5,11 @@ import { Skeleton } from "@mui/material";
 function Info({ title, data, loading, additional }) {
   const rows = Object.entries(data).map(([key, value]) => (
     <Row key={key}>
-      <Text left>{key}</Text>
+      <Text>{key}</Text>
       {loading ? (
         <Skeleton variant="text" sx={{ fontSize: "16px", width: "120px" }} />
       ) : (
-        <Text right>{value}</Text>
+        <Text>{value}</Text>
       )}
     </Row>
   ));

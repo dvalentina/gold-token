@@ -1,7 +1,8 @@
 import React from "react";
 import { EMOJI } from "../../constants";
 import Card from "../Card";
-import { Title, Text, Link } from "../Info/Info.styled";
+import { Title, Text } from "../Info/Info.styled";
+import Link from "../Link";
 
 function NoWalletCard() {
   const dappUrl = window.location.href.split("//")[1];
@@ -15,9 +16,7 @@ function NoWalletCard() {
         your browser.
       </Text>
       <Text wrap>MetaMask suits most platforms.</Text>
-      <Link href={metamaskAppDeepLink} target="_blank" rel="noreferrer">
-        ={">"} Install MetaMask
-      </Link>
+      <Link link={metamaskAppDeepLink} text="Install MetaMask" />
     </Card>
   );
 }

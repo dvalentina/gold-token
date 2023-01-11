@@ -18,6 +18,7 @@ const TokenProvider = ({ children }) => {
     burn,
     burnStatus,
     isBurner,
+    hash,
   } = useToken();
   return (
     <TokenContext.Provider
@@ -35,6 +36,7 @@ const TokenProvider = ({ children }) => {
         burn,
         burnStatus,
         isBurner,
+        hash,
       }}
     >
       {children}

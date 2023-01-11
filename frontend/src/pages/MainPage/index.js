@@ -5,6 +5,7 @@ import {
   LogoGrid,
   FormGrid,
   WalletGrid,
+  TransactionGrid,
 } from "./MainPage.styled";
 import ConnectWallet from "../../components/ConnectWallet";
 import TokenCard from "../../components/Cards/TokenCard";
@@ -14,6 +15,7 @@ import { GOERLI_CHAIN_ID } from "../../constants";
 import GoerliLogo from "../../components/GoerliLogo";
 import Grid from "../../components/Grid";
 import FormSwitcher from "../../components/FormSwitcher";
+import TransactionCard from "../../components/Cards/TransactionCard";
 
 function MainPage() {
   const { account, chainId } = useContext(WalletContext);
@@ -34,6 +36,9 @@ function MainPage() {
           <FormGrid>
             <FormSwitcher />
           </FormGrid>
+          <TransactionGrid>
+            <TransactionCard />
+          </TransactionGrid>
         </>
       ) : (
         <WalletGrid>

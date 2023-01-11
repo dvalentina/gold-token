@@ -19,6 +19,8 @@ const useToken = () => {
   const [mintStatus, setMintStatus] = useState(TX_STATUS.NONE);
   const [burnStatus, setBurnStatus] = useState(TX_STATUS.NONE);
 
+  const [hash, setHash] = useState();
+
   const [isMinter, setIsMinter] = useState(false);
   const [isBurner, setIsBurner] = useState(false);
 
@@ -80,12 +82,14 @@ const useToken = () => {
   }
 
   function transfer(to, amount) {
+    setHash();
     if (correctChain) {
       setTransferStatus(TX_STATUS.WALLET);
       try {
         token
           .transfer(to, ethers.utils.parseUnits(amount))
           .then((tx) => {
+            setHash(tx.hash);
             setTransferStatus(TX_STATUS.IN_PROGRESS);
             return tx.wait();
           })
@@ -139,12 +143,14 @@ const useToken = () => {
   }
 
   function mint(to, amount) {
+    setHash("");
     if (correctChain) {
       setMintStatus(TX_STATUS.WALLET);
       try {
         token
           .mint(to, ethers.utils.parseUnits(amount))
           .then((tx) => {
+            setHash(tx.hash);
             setMintStatus(TX_STATUS.IN_PROGRESS);
             return tx.wait();
           })
@@ -199,12 +205,14 @@ const useToken = () => {
   }
 
   function burn(from, amount) {
+    setHash("");
     if (correctChain) {
       setBurnStatus(TX_STATUS.WALLET);
       try {
         token
           .burn(from, ethers.utils.parseUnits(amount))
           .then((tx) => {
+            setHash(tx.hash);
             setBurnStatus(TX_STATUS.IN_PROGRESS);
             return tx.wait();
           })
@@ -333,6 +341,7 @@ const useToken = () => {
     burn,
     burnStatus,
     isBurner,
+    hash,
   };
 };
 

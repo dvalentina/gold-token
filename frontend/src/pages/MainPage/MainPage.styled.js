@@ -82,3 +82,19 @@ export const WalletGrid = styled.div`
     padding: 0 24px;
   }
 `;
+
+export const TransactionGrid = styled.div`
+  display: flex;
+  grid-row: 4;
+  grid-column: 2 / 6;
+
+  @media ${BREAKPOINT.M} {
+    grid-column: 2;
+    grid-row: 5;
+  }
+
+  @media ${BREAKPOINT.S} {
+    grid-column: 1;
+    grid-row: 5;
+  }
+`;
