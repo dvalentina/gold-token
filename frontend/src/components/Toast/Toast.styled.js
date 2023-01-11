@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { BREAKPOINT } from "../../constants";
 
 export const Container = styled.div`
   align-self: center;
@@ -8,6 +9,10 @@ export const Container = styled.div`
   border-radius: 12px;
   display: flex;
   justify-content: space-between;
+
+  @media (${BREAKPOINT.S}) {
+    width: 90vw;
+  }
 `;
 
 export const Text = styled.p`
