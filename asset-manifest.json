@@ -1,14 +1,16 @@
 {
   "files": {
     "main.css": "/gold-token/static/css/main.e6c13ad2.css",
-    "main.js": "/gold-token/static/js/main.d30aec18.js",
+    "main.js": "/gold-token/static/js/main.cd11c621.js",
     "static/media/GoerliLogo.svg": "/gold-token/static/media/GoerliLogo.0c1e2de019b58d4c080f66a8a76461bb.svg",
+    "static/media/InfoIcon.svg": "/gold-token/static/media/InfoIcon.8a83b30be6ce351692a7f92a3af34f4c.svg",
     "index.html": "/gold-token/index.html",
+    "static/media/CopyIcon.svg": "/gold-token/static/media/CopyIcon.4a73c18d9dd71f0d192306278e4a02e9.svg",
     "main.e6c13ad2.css.map": "/gold-token/static/css/main.e6c13ad2.css.map",
-    "main.d30aec18.js.map": "/gold-token/static/js/main.d30aec18.js.map"
+    "main.cd11c621.js.map": "/gold-token/static/js/main.cd11c621.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.d30aec18.js"
+    "static/js/main.cd11c621.js"
   ]
 }
