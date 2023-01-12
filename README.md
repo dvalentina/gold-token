@@ -17,6 +17,7 @@ This project is deployed to gh-pages and available at [dvalentina.github.io/gold
 - Hardhat
 - Ethers
 - Goerli Testnet
+- openzeppelin
 
 ## Sources
 

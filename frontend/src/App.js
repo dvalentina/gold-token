@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import MainPage from "./pages/MainPage";
 import WalletProvider from "./contexts/WalletContext";
 import TokenProvider from "./contexts/TokenContext";
 import NoWalletPage from "./pages/NoWalletPage";
 import ToastProvider from "./contexts/ToastContext";
+import RoutesComponent from "./routes";
 
 const AppContainer = styled.div`
   display: flex;
@@ -23,7 +23,7 @@ function App() {
         {window.ethereum ? (
           <WalletProvider>
             <TokenProvider>
-              <MainPage />
+              <RoutesComponent />
             </TokenProvider>
           </WalletProvider>
         ) : (
