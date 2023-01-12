@@ -52,7 +52,12 @@ function Form({
       {firstInput}
       <FormElement>
         <Label>{firstToUpperCase(targetLabel)} address</Label>
-        <Input type="text" name={targetLabel} required />
+        <Input
+          type="text"
+          name={targetLabel}
+          placeholder="0x0000..."
+          required
+        />
       </FormElement>
       <Button primary type="submit" disabled={status}>
         <span style={{ position: "relative" }}>

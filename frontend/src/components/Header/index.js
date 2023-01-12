@@ -1,17 +1,21 @@
 import React from "react";
-import About from "../About";
+import AboutProject from "../About/AboutProject";
+import AboutAdmin from "../About/AboutAdmin";
 import GoerliLogo from "../GoerliLogo";
-import { LogoGrid, AboutGrid } from "./Header.styled";
+import { LogoGrid, AboutGrid, AdminGrid } from "./Header.styled";
 
 function Header() {
   return (
     <>
       <AboutGrid>
-        <About />
+        <AboutProject />
       </AboutGrid>
       <LogoGrid>
         <GoerliLogo />
       </LogoGrid>
+      <AdminGrid>
+        <AboutAdmin />
+      </AdminGrid>
     </>
   );
 }

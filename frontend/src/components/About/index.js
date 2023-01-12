@@ -1,21 +1,11 @@
 import React from "react";
-import { Container, Icon, Text } from "./About.styled";
-import { ReactComponent as InfoIcon } from "../../images/InfoIcon.svg";
-import Link from "../Link";
+import { Container, Icon, Info } from "./About.styled";
 
-function About() {
+function About({ right, icon, children }) {
   return (
-    <Container>
-      <Icon>
-        <InfoIcon />
-      </Icon>
-      <div>
-        <Text>A project for studying interaction with ERC-20 tokens.</Text>
-        <Text>
-          Read more here{" "}
-          <Link link="https://github.com/dvalentina/gold-token" text="GitHub" />
-        </Text>
-      </div>
+    <Container right={right}>
+      <Icon>{icon}</Icon>
+      <Info>{children}</Info>
     </Container>
   );
 }
