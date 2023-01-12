@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { WalletContext } from "../../contexts/WalletContext";
 import { shortenAddress } from "../../utils";
 import { TokenContext } from "../../contexts/TokenContext";
-import Form from "../Form";
+import AmountForm from "../Form/AmountForm";
 
 function TransferForm() {
   const { account } = useContext(WalletContext);
@@ -10,7 +10,7 @@ function TransferForm() {
     useContext(TokenContext);
 
   return (
-    <Form
+    <AmountForm
       onSubmit={transfer}
       status={transferStatus}
       name="transfer"

@@ -1,12 +1,17 @@
 import React, { useContext } from "react";
 import { TokenContext } from "../../contexts/TokenContext";
-import Form from "../Form";
+import AmountForm from "../Form/AmountForm";
 
 function MintForm() {
   const { mint, mintStatus } = useContext(TokenContext);
 
   return (
-    <Form onSubmit={mint} status={mintStatus} name="mint" targetLabel="to" />
+    <AmountForm
+      onSubmit={mint}
+      status={mintStatus}
+      name="mint"
+      targetLabel="to"
+    />
   );
 }
 

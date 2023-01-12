@@ -1,3 +1,5 @@
+import { ethers } from "ethers";
+
 export const GLD_TOKEN_ADDRESS = "0xe9CC9Ee4f48C6411702f993e9A0C65b4F93af4df";
 export const GOERLI_CHAIN_ID = "0x5";
 
@@ -24,4 +26,9 @@ export const FORM = {
   TRANSFER: "transfer",
   MINT: "mint",
   BURN: "burn",
+};
+
+export const ROLE = {
+  minter: ethers.utils.solidityKeccak256(["string"], ["MINTER_ROLE"]),
+  burner: ethers.utils.solidityKeccak256(["string"], ["BURNER_ROLE"]),
 };
