@@ -1,15 +1,15 @@
 import React from "react";
 import NoWalletCard from "../../components/Cards/NoWalletCard";
-import Grid from "../../components/Grid";
+import Layout from "../../components/Layout";
 import { CardGrid } from "./NoWalletPage.styled";
 
 function NoWalletPage() {
   return (
-    <Grid>
+    <Layout>
       <CardGrid>
         <NoWalletCard />
       </CardGrid>
-    </Grid>
+    </Layout>
   );
 }
 
