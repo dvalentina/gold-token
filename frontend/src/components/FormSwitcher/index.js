@@ -34,8 +34,8 @@ function FormSwitcher() {
   }
 
   const handleChoose = (event) => {
-    if (event.target.name !== chosen) {
-      setChosen(event.target.name);
+    if (event.target.value !== chosen) {
+      setChosen(event.target.value);
     } else {
       return;
     }
