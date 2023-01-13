@@ -18,19 +18,23 @@ function Form({ firstInput, handleSubmit, name, subtitle, targetLabel, long }) {
   const { txStatus } = useContext(TokenContext);
 
   function getButtonText() {
-    const action = firstToUpperCase(name);
+    const button = firstToUpperCase(name);
+    let buttonProcess;
+    if (button.slice(-1) === "e") {
+      buttonProcess = button.slice(0, -1);
+    }
 
     switch (txStatus) {
       case TX_STATUS.IN_PROGRESS:
-        return `${action}ing`;
+        return `${buttonProcess}ing`;
       case TX_STATUS.SUCCESS:
-        return `${action}ed! ${EMOJI.SUCCESS}`;
+        return `${buttonProcess}ed! ${EMOJI.SUCCESS}`;
       case TX_STATUS.ERROR:
         return `Error ${EMOJI.ERROR}`;
       case TX_STATUS.WALLET:
         return `Go to your wallet ${EMOJI.NEUTRAL}`;
       default:
-        return `${action}`;
+        return `${button}`;
     }
   }
 

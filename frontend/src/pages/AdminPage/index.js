@@ -1,7 +1,8 @@
 import React from "react";
 import RolesFormSwitcher from "../../components/FormSwitcher/RoleFormSwitcher";
 import Layout from "../../components/Layout";
-import { FormGrid } from "./AdminPage.styled";
+import { FormGrid, TransactionGrid } from "./AdminPage.styled";
+import TransactionCard from "../../components/Cards/TransactionCard";
 
 function AdminPage() {
   return (
@@ -9,6 +10,9 @@ function AdminPage() {
       <FormGrid>
         <RolesFormSwitcher />
       </FormGrid>
+      <TransactionGrid>
+        <TransactionCard />
+      </TransactionGrid>
     </Layout>
   );
 }

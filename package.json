@@ -4,7 +4,9 @@
   "description": "Study project",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy-contract": "npx hardhat run scripts/GLDToken_deploy.js --network goerli",
+    "verify-contract": "npx hardhat verify --contract contracts/GLDToken.sol:GLDToken --network goerli  --constructor-args arguments.js $CONTRACT_ADDRESS"
   },
   "author": "",
   "license": "ISC",

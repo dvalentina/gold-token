@@ -7,8 +7,16 @@ import Info from "../Info";
 
 function TokenCard() {
   const { account } = useContext(WalletContext);
-  const { name, decimals, totalSupply, symbol, balance, isMinter, isBurner } =
-    useContext(TokenContext);
+  const {
+    name,
+    decimals,
+    totalSupply,
+    symbol,
+    balance,
+    isMinter,
+    isBurner,
+    isAdmin,
+  } = useContext(TokenContext);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -19,11 +27,21 @@ function TokenCard() {
       symbol &&
       balance &&
       isMinter !== undefined &&
-      isBurner !== undefined
+      isBurner !== undefined &&
+      isAdmin !== undefined
     ) {
       setLoading(false);
     }
-  }, [name, decimals, totalSupply, symbol, balance, isMinter, isBurner]);
+  }, [
+    name,
+    decimals,
+    totalSupply,
+    symbol,
+    balance,
+    isMinter,
+    isBurner,
+    isAdmin,
+  ]);
 
   const data = {
     Name: name,
@@ -34,14 +52,21 @@ function TokenCard() {
   };
 
   const additional = [];
-  if (!isBurner && !isMinter) {
+  if (!isBurner && !isMinter && !isAdmin) {
     additional.push("You don't have any roles");
-  } else if (isBurner && !isMinter) {
-    additional.push("You have the burner role");
-  } else if (!isBurner && isMinter) {
-    additional.push("You have the minter role");
-  } else if (isBurner && isMinter) {
-    additional.push("You have the minter and the burner roles");
+  } else {
+    const roles = [];
+    if (isMinter) {
+      roles.push("minter");
+    }
+    if (isBurner) {
+      roles.push("burner");
+    }
+    if (isAdmin) {
+      roles.push("admin");
+    }
+
+    additional.push(`Your roles: ${roles.join(", ")}`);
   }
 
   return (

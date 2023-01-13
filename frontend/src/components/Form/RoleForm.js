@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { FormElement, Label } from "../Form/Form.styled";
 import Form from ".";
 import RadioButtons from "../RadioButtons";
-import { ROLE } from "../../constants";
+import { TokenContext } from "../../contexts/TokenContext";
 
 function RoleForm({ onSubmit, name, subtitle, targetLabel, long }) {
-  const [chosen, setChosen] = useState(Object.keys(ROLE)[0]);
-  const options = Object.keys(ROLE);
+  const { roles } = useContext(TokenContext);
+
+  const [chosen, setChosen] = useState(Object.keys(roles)[0]);
+  const options = Object.keys(roles);
+  console.log(chosen);
 
   const handleChoose = (event) => {
     if (event.target.value !== chosen) {
@@ -19,7 +22,12 @@ function RoleForm({ onSubmit, name, subtitle, targetLabel, long }) {
   const amountInput = (
     <FormElement>
       <Label>Role</Label>
-      <RadioButtons options={options} chosen={chosen} onClick={handleChoose} />
+      <RadioButtons
+        name="role"
+        options={options}
+        chosen={chosen}
+        onClick={handleChoose}
+      />
     </FormElement>
   );
 
@@ -28,10 +36,10 @@ function RoleForm({ onSubmit, name, subtitle, targetLabel, long }) {
 
     const formData = new FormData(event.target);
     const targetAddress = formData.get(targetLabel);
-    const role = ROLE[chosen];
+    const role = roles[chosen];
 
     if (targetAddress && role) {
-      onSubmit(targetAddress, role);
+      onSubmit(role, targetAddress);
     }
   };
 

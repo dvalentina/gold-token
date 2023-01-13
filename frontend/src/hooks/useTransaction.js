@@ -5,7 +5,7 @@ import GLDTokenAbi from "../abi/GLDTokenAbi.json";
 import { WalletContext } from "../contexts/WalletContext";
 import { ToastContext, ADD } from "../contexts/ToastContext";
 
-const useToken = ({ updateTokenInfo }) => {
+const useTransaction = ({ updateTokenInfo }) => {
   const { account, chainId } = useContext(WalletContext);
   const { toastDispatch } = useContext(ToastContext);
 
@@ -78,25 +78,26 @@ const useToken = ({ updateTokenInfo }) => {
     }
   }
 
-  function transfer(to, amount) {
-    function transact() {
-      return token.transfer(to, ethers.utils.parseUnits(amount));
-    }
-    sendTransaction(transact);
+  function transferTokens(to, amount) {
+    sendTransaction(() => token.transfer(to, ethers.utils.parseUnits(amount)));
   }
 
-  function mint(to, amount) {
-    function transact() {
-      return token.mint(to, ethers.utils.parseUnits(amount));
-    }
-    sendTransaction(transact);
+  function mintTokens(to, amount) {
+    sendTransaction(() => token.mint(to, ethers.utils.parseUnits(amount)));
   }
 
-  function burn(from, amount) {
-    function transact() {
-      return token.burn(from, ethers.utils.parseUnits(amount));
-    }
-    sendTransaction(transact);
+  function burnTokens(from, amount) {
+    sendTransaction(() => token.burn(from, ethers.utils.parseUnits(amount)));
+  }
+
+  function grantRole(role, address) {
+    console.log("address", address);
+    console.log("role", role);
+    sendTransaction(() => token.grantRole(role, address));
+  }
+
+  function revokeRole(role, address) {
+    sendTransaction(() => token.revokeRole(role, address));
   }
 
   useEffect(() => {
@@ -106,12 +107,14 @@ const useToken = ({ updateTokenInfo }) => {
   });
 
   return {
-    transfer,
-    mint,
-    burn,
+    transferTokens,
+    mintTokens,
+    burnTokens,
+    grantRole,
+    revokeRole,
     txStatus,
     hash,
   };
 };
 
-export default useToken;
+export default useTransaction;

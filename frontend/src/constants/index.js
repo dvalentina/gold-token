@@ -1,6 +1,4 @@
-import { ethers } from "ethers";
-
-export const GLD_TOKEN_ADDRESS = "0xe9CC9Ee4f48C6411702f993e9A0C65b4F93af4df";
+export const GLD_TOKEN_ADDRESS = "0xF61E8fA20930EFcEa54D83CE9E5E5C7F2A66b1ee";
 export const GOERLI_CHAIN_ID = "0x5";
 
 export const BREAKPOINT = {
@@ -28,9 +26,4 @@ export const FORM = {
   BURN: "burn",
   GRANT: "grant",
   REVOKE: "revoke",
-};
-
-export const ROLE = {
-  minter: ethers.utils.solidityKeccak256(["string"], ["MINTER_ROLE"]),
-  burner: ethers.utils.solidityKeccak256(["string"], ["BURNER_ROLE"]),
 };

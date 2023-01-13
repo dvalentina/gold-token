@@ -7,11 +7,7 @@ async function main() {
 
   const GLDToken = await hre.ethers.getContractFactory("GLDToken");
   console.log("Deploying GLDToken...");
-  const token = await GLDToken.deploy(
-    "10000000000000000000000",
-    deployer.address,
-    deployer.address
-  );
+  const token = await GLDToken.deploy("10000000000000000000000");
 
   await token.deployed();
   console.log("GLDToken deployed to:", token.address);

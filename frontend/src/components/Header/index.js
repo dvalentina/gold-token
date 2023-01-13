@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import AboutProject from "../About/AboutProject";
 import AboutAdmin from "../About/AboutAdmin";
 import GoerliLogo from "../GoerliLogo";
 import { LogoGrid, AboutGrid, AdminGrid } from "./Header.styled";
+import { TokenContext } from "../../contexts/TokenContext";
 
 function Header() {
+  const { isAdmin } = useContext(TokenContext);
+
   return (
     <>
       <AboutGrid>
@@ -13,9 +16,11 @@ function Header() {
       <LogoGrid>
         <GoerliLogo />
       </LogoGrid>
-      <AdminGrid>
-        <AboutAdmin />
-      </AdminGrid>
+      {isAdmin ? (
+        <AdminGrid>
+          <AboutAdmin />
+        </AdminGrid>
+      ) : null}
     </>
   );
 }
