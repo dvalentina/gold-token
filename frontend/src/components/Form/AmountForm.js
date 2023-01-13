@@ -4,7 +4,7 @@ import { TokenContext } from "../../contexts/TokenContext";
 import { Skeleton } from "@mui/material";
 import Form from ".";
 
-function AmountForm({ onSubmit, status, name, subtitle, targetLabel, long }) {
+function AmountForm({ onSubmit, name, subtitle, targetLabel, long }) {
   const { symbol } = useContext(TokenContext);
 
   const amountInput = (
@@ -40,7 +40,6 @@ function AmountForm({ onSubmit, status, name, subtitle, targetLabel, long }) {
     <Form
       firstInput={amountInput}
       handleSubmit={handleSubmit}
-      status={status}
       name={name}
       subtitle={subtitle}
       targetLabel={targetLabel}

@@ -4,7 +4,7 @@ import Form from ".";
 import RadioButtons from "../RadioButtons";
 import { ROLE } from "../../constants";
 
-function RoleForm({ onSubmit, status, name, subtitle, targetLabel, long }) {
+function RoleForm({ onSubmit, name, subtitle, targetLabel, long }) {
   const [chosen, setChosen] = useState(Object.keys(ROLE)[0]);
   const options = Object.keys(ROLE);
 
@@ -39,7 +39,6 @@ function RoleForm({ onSubmit, status, name, subtitle, targetLabel, long }) {
     <Form
       firstInput={amountInput}
       handleSubmit={handleSubmit}
-      status={status}
       name={name}
       subtitle={subtitle}
       targetLabel={targetLabel}

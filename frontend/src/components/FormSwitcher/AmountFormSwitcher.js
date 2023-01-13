@@ -10,8 +10,7 @@ import {
 import { TokenContext } from "../../contexts/TokenContext";
 
 function AmountFormSwitcher() {
-  const { isMinter, isBurner, mintStatus, burnStatus, transferStatus } =
-    useContext(TokenContext);
+  const { isMinter, isBurner, txStatus } = useContext(TokenContext);
   const [chosen, setChosen] = useState(FORM.TRANSFER);
 
   const options = [FORM.TRANSFER];
@@ -20,11 +19,6 @@ function AmountFormSwitcher() {
   useEffect(() => {
     setChosen(FORM.TRANSFER);
   }, [isMinter, isBurner]);
-
-  const disabled =
-    mintStatus === TX_STATUS.IN_PROGRESS ||
-    burnStatus === TX_STATUS.IN_PROGRESS ||
-    transferStatus === TX_STATUS.IN_PROGRESS;
 
   if (isMinter) {
     options.push(FORM.MINT);
@@ -61,7 +55,7 @@ function AmountFormSwitcher() {
           chosen={chosen}
           options={options}
           onClick={handleChoose}
-          disabled={disabled}
+          disabled={txStatus === TX_STATUS.IN_PROGRESS}
         />
       )}
       {switchForms()}

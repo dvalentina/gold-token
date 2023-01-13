@@ -3,16 +3,9 @@ import { TokenContext } from "../../contexts/TokenContext";
 import AmountForm from "../Form/AmountForm";
 
 function BurnForm() {
-  const { burn, burnStatus } = useContext(TokenContext);
+  const { burn } = useContext(TokenContext);
 
-  return (
-    <AmountForm
-      onSubmit={burn}
-      status={burnStatus}
-      name="burn"
-      targetLabel="from"
-    />
-  );
+  return <AmountForm onSubmit={burn} name="burn" targetLabel="from" />;
 }
 
 export default BurnForm;

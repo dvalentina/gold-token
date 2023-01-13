@@ -1,25 +1,18 @@
 import React from "react";
 import useToken from "../hooks/useToken";
+import useTokenInfo from "../hooks/useTokenInfo";
+import useRoles from "../hooks/useRoles";
 
 export const TokenContext = React.createContext();
 
 const TokenProvider = ({ children }) => {
-  const {
-    name,
-    decimals,
-    totalSupply,
-    symbol,
-    balance,
-    transfer,
-    transferStatus,
-    mint,
-    mintStatus,
-    isMinter,
-    burn,
-    burnStatus,
-    isBurner,
-    hash,
-  } = useToken();
+  const { name, decimals, totalSupply, symbol, balance, updateTokenInfo } =
+    useTokenInfo();
+  const { transfer, mint, burn, hash, txStatus } = useToken({
+    updateTokenInfo,
+  });
+  const { isMinter, isBurner } = useRoles();
+
   return (
     <TokenContext.Provider
       value={{
@@ -29,14 +22,12 @@ const TokenProvider = ({ children }) => {
         symbol,
         balance,
         transfer,
-        transferStatus,
         mint,
-        mintStatus,
         isMinter,
         burn,
-        burnStatus,
         isBurner,
         hash,
+        txStatus,
       }}
     >
       {children}

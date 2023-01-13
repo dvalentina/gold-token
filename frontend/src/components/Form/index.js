@@ -11,22 +11,16 @@ import Button from "../Button";
 import useEllipsis from "../../hooks/useEllipsis";
 import { EMOJI, TX_STATUS } from "../../constants";
 import { firstToUpperCase } from "../../utils";
+import { TokenContext } from "../../contexts/TokenContext";
 
-function Form({
-  firstInput,
-  handleSubmit,
-  status,
-  name,
-  subtitle,
-  targetLabel,
-  long,
-}) {
+function Form({ firstInput, handleSubmit, name, subtitle, targetLabel, long }) {
   const { ellipsis } = useEllipsis();
+  const { txStatus } = useContext(TokenContext);
 
   function getButtonText() {
     const action = firstToUpperCase(name);
 
-    switch (status) {
+    switch (txStatus) {
       case TX_STATUS.IN_PROGRESS:
         return `${action}ing`;
       case TX_STATUS.SUCCESS:
@@ -59,10 +53,10 @@ function Form({
           required
         />
       </FormElement>
-      <Button primary type="submit" disabled={status}>
+      <Button primary type="submit" disabled={txStatus}>
         <span style={{ position: "relative" }}>
           {getButtonText()}
-          {status === TX_STATUS.IN_PROGRESS ? (
+          {txStatus === TX_STATUS.IN_PROGRESS ? (
             <span style={{ position: "absolute" }}>{ellipsis}</span>
           ) : (
             ""

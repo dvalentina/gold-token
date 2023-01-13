@@ -3,16 +3,9 @@ import { TokenContext } from "../../contexts/TokenContext";
 import AmountForm from "../Form/AmountForm";
 
 function MintForm() {
-  const { mint, mintStatus } = useContext(TokenContext);
+  const { mint } = useContext(TokenContext);
 
-  return (
-    <AmountForm
-      onSubmit={mint}
-      status={mintStatus}
-      name="mint"
-      targetLabel="to"
-    />
-  );
+  return <AmountForm onSubmit={mint} name="mint" targetLabel="to" />;
 }
 
 export default MintForm;
