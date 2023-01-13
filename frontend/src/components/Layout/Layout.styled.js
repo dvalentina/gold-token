@@ -5,16 +5,26 @@ export const Container = styled.div`
   display: grid;
   grid-template-areas:
     "header"
-    "body";
+    "body"
+    "footer";
   padding: 24px 0;
+  height: 100%;
+  grid-template-rows: auto 1fr auto;
 `;
 
 export const HeaderGrid = styled.div`
   grid-area: header;
+  height: fit-content;
 `;
 
 export const BodyGrid = styled.div`
   grid-area: body;
+`;
+
+export const FooterGrid = styled.div`
+  display: flex;
+  justify-content: center;
+  grid-area: footer;
 `;
 
 export const Grid = styled.div`

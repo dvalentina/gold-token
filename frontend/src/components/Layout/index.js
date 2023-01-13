@@ -1,6 +1,13 @@
 import React from "react";
 import Header from "../Header";
-import { Container, HeaderGrid, BodyGrid, Grid } from "./Layout.styled";
+import Footer from "../Footer";
+import {
+  Container,
+  HeaderGrid,
+  BodyGrid,
+  Grid,
+  FooterGrid,
+} from "./Layout.styled";
 
 function Layout({ children }) {
   return (
@@ -13,6 +20,9 @@ function Layout({ children }) {
       <BodyGrid>
         <Grid>{children}</Grid>
       </BodyGrid>
+      <FooterGrid>
+        <Footer />
+      </FooterGrid>
     </Container>
   );
 }
