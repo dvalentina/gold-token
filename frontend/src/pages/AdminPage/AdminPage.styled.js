@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import { BREAKPOINT } from "../../constants";
 
-export const GrantGrid = styled.div`
+export const FormGrid = styled.div`
   display: flex;
-  grid-row: 2 / 4;
-  grid-column: 2 / 4;
+  grid-row: 1 / 3;
+  grid-column: 3 / 5;
 
   @media ${BREAKPOINT.M} {
     grid-column: 2;
@@ -14,21 +14,5 @@ export const GrantGrid = styled.div`
   @media ${BREAKPOINT.S} {
     grid-column: 1;
     grid-row: 1;
-  }
-`;
-
-export const RevokeGrid = styled.div`
-  display: flex;
-  grid-row: 2 / 4;
-  grid-column: 4 / 6;
-
-  @media ${BREAKPOINT.M} {
-    grid-column: 2;
-    grid-row: 2;
-  }
-
-  @media ${BREAKPOINT.S} {
-    grid-column: 1;
-    grid-row: 2;
   }
 `;

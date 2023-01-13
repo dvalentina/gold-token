@@ -26,6 +26,8 @@ export const FORM = {
   TRANSFER: "transfer",
   MINT: "mint",
   BURN: "burn",
+  GRANT: "grant",
+  REVOKE: "revoke",
 };
 
 export const ROLE = {

@@ -12,7 +12,7 @@ import AccountCard from "../../components/Cards/AccountCard";
 import { WalletContext } from "../../contexts/WalletContext";
 import { GOERLI_CHAIN_ID } from "../../constants";
 import Layout from "../../components/Layout";
-import FormSwitcher from "../../components/FormSwitcher";
+import AmountFormSwitcher from "../../components/FormSwitcher/AmountFormSwitcher";
 import TransactionCard from "../../components/Cards/TransactionCard";
 
 function MainPage() {
@@ -29,7 +29,7 @@ function MainPage() {
             <TokenCard />
           </TokenGrid>
           <FormGrid>
-            <FormSwitcher />
+            <AmountFormSwitcher />
           </FormGrid>
           <TransactionGrid>
             <TransactionCard />

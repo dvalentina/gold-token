@@ -9,7 +9,7 @@ import {
 } from "./FormSwitcher.styled";
 import { TokenContext } from "../../contexts/TokenContext";
 
-function FormSwitcher() {
+function AmountFormSwitcher() {
   const { isMinter, isBurner, mintStatus, burnStatus, transferStatus } =
     useContext(TokenContext);
   const [chosen, setChosen] = useState(FORM.TRANSFER);
@@ -69,4 +69,4 @@ function FormSwitcher() {
   );
 }
 
-export default FormSwitcher;
+export default AmountFormSwitcher;

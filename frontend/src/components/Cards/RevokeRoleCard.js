@@ -5,7 +5,7 @@ import Card from "../../components/Card";
 function RevokeRoleCard() {
   return (
     <Card>
-      <RoleForm name="Revoke" targetLabel="from" />
+      <RoleForm name="Revoke" targetLabel="from" subtitle="roles" />
     </Card>
   );
 }

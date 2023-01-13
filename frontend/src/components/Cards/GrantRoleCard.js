@@ -5,7 +5,7 @@ import Card from "../../components/Card";
 function GrantRoleCard() {
   return (
     <Card>
-      <RoleForm name="Grant" targetLabel="to" />
+      <RoleForm name="Grant" targetLabel="to" subtitle="roles" />
     </Card>
   );
 }

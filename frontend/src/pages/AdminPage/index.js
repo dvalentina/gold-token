@@ -1,18 +1,14 @@
 import React from "react";
-import GrantRoleCard from "../../components/Cards/GrantRoleCard";
-import RevokeRoleCard from "../../components/Cards/RevokeRoleCard";
+import RolesFormSwitcher from "../../components/FormSwitcher/RoleFormSwitcher";
 import Layout from "../../components/Layout";
-import { GrantGrid, RevokeGrid } from "./AdminPage.styled";
+import { FormGrid } from "./AdminPage.styled";
 
 function AdminPage() {
   return (
     <Layout>
-      <GrantGrid>
-        <GrantRoleCard />
-      </GrantGrid>
-      <RevokeGrid>
-        <RevokeRoleCard />
-      </RevokeGrid>
+      <FormGrid>
+        <RolesFormSwitcher />
+      </FormGrid>
     </Layout>
   );
 }
