@@ -10,6 +10,10 @@ export const Container = styled.div`
   padding: 24px 0;
   height: 100%;
   grid-template-rows: auto 1fr auto;
+
+  @media (${BREAKPOINT.M}) {
+    height: auto;
+  }
 `;
 
 export const HeaderGrid = styled.div`
@@ -25,6 +29,7 @@ export const FooterGrid = styled.div`
   display: flex;
   justify-content: center;
   grid-area: footer;
+  margin-top: 24px;
 `;
 
 export const Grid = styled.div`
