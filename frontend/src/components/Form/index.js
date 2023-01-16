@@ -19,7 +19,7 @@ function Form({ firstInput, handleSubmit, name, subtitle, targetLabel, long }) {
 
   function getButtonText() {
     const button = firstToUpperCase(name);
-    let buttonProcess;
+    let buttonProcess = button;
     if (button.slice(-1) === "e") {
       buttonProcess = button.slice(0, -1);
     }
