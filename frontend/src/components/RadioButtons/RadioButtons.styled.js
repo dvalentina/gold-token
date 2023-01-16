@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const RadioGroup = styled.div`
   display: flex;
@@ -51,16 +51,22 @@ export const Label = styled.label`
     cursor: auto;
   }
 
-  &:has(input:checked) {
-    background: black;
-    color: white;
-    box-shadow: #121212 0 0 0 3px, transparent 0 0 0 0;
-  }
+  ${({ checked }) =>
+    checked
+      ? css`
+          background: black;
+          color: white;
+          box-shadow: #121212 0 0 0 3px, transparent 0 0 0 0;
+        `
+      : null}
 
-  &:has(input:checked:disabled) {
-    background: rgba(0, 0, 0, 0.5);
-    color: rgba(255, 255, 255, 0.7);
-    box-shadow: rgba(0, 0, 0, 0.5) 0 0 0 3px, transparent 0 0 0 0;
-    cursor: auto;
-  }
+  ${({ checked, disabled }) =>
+    checked && disabled
+      ? css`
+          background: rgba(0, 0, 0, 0.5);
+          color: rgba(255, 255, 255, 0.7);
+          box-shadow: rgba(0, 0, 0, 0.5) 0 0 0 3px, transparent 0 0 0 0;
+          cursor: auto;
+        `
+      : null}
 `;
