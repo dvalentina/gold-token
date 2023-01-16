@@ -15,7 +15,7 @@ const RoutesComponent = () => {
         }
         path="/admin"
       />
-      <Route element={<Navigate to="/" replace />} replace />
+      <Route element={<Navigate to="/" replace />} replace path="*" />
     </Routes>
   );
 };
