@@ -11,11 +11,11 @@ export const Container = styled.div`
 
 export const StyledRadioButtons = styled(RadioButtons)`
   @media (${BREAKPOINT.S}) {
-    button:first-child {
+    label:first-child {
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
     }
-    button:last-child {
+    label:last-child {
       border-top-right-radius: 0;
       border-bottom-right-radius: 0;
     }
