@@ -5,7 +5,7 @@ import GLDTokenAbi from "../abi/GLDTokenAbi.json";
 import { WalletContext } from "../contexts/WalletContext";
 import { ToastContext, ADD } from "../contexts/ToastContext";
 
-const useTransaction = ({ updateTokenInfo }) => {
+const useTransaction = ({ updateTokenInfo, updateRoles }) => {
   const { account, chainId } = useContext(WalletContext);
   const { toastDispatch } = useContext(ToastContext);
 
@@ -42,6 +42,7 @@ const useTransaction = ({ updateTokenInfo }) => {
               },
             });
             updateTokenInfo();
+            updateRoles();
           })
           .catch((error) => {
             setTxStatus(TX_STATUS.ERROR);
@@ -91,8 +92,6 @@ const useTransaction = ({ updateTokenInfo }) => {
   }
 
   function grantRole(role, address) {
-    console.log("address", address);
-    console.log("role", role);
     sendTransaction(() => token.grantRole(role, address));
   }
 

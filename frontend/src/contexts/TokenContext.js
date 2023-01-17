@@ -8,6 +8,7 @@ export const TokenContext = React.createContext();
 const TokenProvider = ({ children }) => {
   const { name, decimals, totalSupply, symbol, balance, updateTokenInfo } =
     useTokenInfo();
+  const { isMinter, isBurner, isAdmin, roles, updateRoles } = useRoles();
   const {
     transferTokens,
     mintTokens,
@@ -18,8 +19,8 @@ const TokenProvider = ({ children }) => {
     txStatus,
   } = useTransaction({
     updateTokenInfo,
+    updateRoles,
   });
-  const { isMinter, isBurner, isAdmin, roles } = useRoles();
 
   return (
     <TokenContext.Provider

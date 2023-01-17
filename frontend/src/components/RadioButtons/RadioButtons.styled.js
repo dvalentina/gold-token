@@ -41,15 +41,23 @@ export const Label = styled.label`
   height: auto;
   width: 100%;
 
-  &:hover:not([disabled]) {
-    box-shadow: #121212 0 0 0 3px, transparent 0 0 0 0;
+  &:hover {
+    ${({ disabled }) =>
+      disabled
+        ? null
+        : css`
+            box-shadow: #121212 0 0 0 3px, transparent 0 0 0 0;
+          `}
   }
 
-  &:has(input:disabled) {
-    background: white;
-    color: rgba(0, 0, 0, 0.5);
-    cursor: auto;
-  }
+  ${({ disabled }) =>
+    disabled
+      ? css`
+          background: white;
+          color: rgba(0, 0, 0, 0.5);
+          cursor: auto;
+        `
+      : null}
 
   ${({ checked }) =>
     checked

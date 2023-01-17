@@ -9,7 +9,6 @@ function RoleForm({ onSubmit, name, subtitle, targetLabel, long }) {
 
   const [chosen, setChosen] = useState(Object.keys(roles)[0]);
   const options = Object.keys(roles);
-  console.log(chosen);
 
   const handleChoose = (event) => {
     if (event.target.value !== chosen) {

@@ -71,6 +71,7 @@ const useRoles = () => {
     isMinter,
     isBurner,
     isAdmin,
+    updateRoles: checkRoles,
   };
 };
 

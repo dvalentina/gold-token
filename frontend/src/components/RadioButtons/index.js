@@ -10,8 +10,6 @@ function RadioButtons({
   name,
   onReset,
 }) {
-  console.log("chosen", chosen);
-  console.log("options", options);
   const buttons = options?.map((option) => (
     <Label key={option} checked={chosen === option} disabled={disabled}>
       <RadioButton
