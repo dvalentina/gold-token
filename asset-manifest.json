@@ -1,16 +1,18 @@
 {
   "files": {
     "main.css": "/gold-token/static/css/main.e6c13ad2.css",
-    "main.js": "/gold-token/static/js/main.53f40172.js",
+    "main.js": "/gold-token/static/js/main.e9618eef.js",
     "static/media/GoerliLogo.svg": "/gold-token/static/media/GoerliLogo.0c1e2de019b58d4c080f66a8a76461bb.svg",
+    "static/media/AdminIcon.svg": "/gold-token/static/media/AdminIcon.cc60032c2635466d4fc9e72d4bc1529d.svg",
     "static/media/InfoIcon.svg": "/gold-token/static/media/InfoIcon.8a83b30be6ce351692a7f92a3af34f4c.svg",
     "index.html": "/gold-token/index.html",
     "static/media/CopyIcon.svg": "/gold-token/static/media/CopyIcon.4a73c18d9dd71f0d192306278e4a02e9.svg",
+    "static/media/BackIcon.svg": "/gold-token/static/media/BackIcon.4b94755a8a2f474e8cfd4c5c6c3e1eef.svg",
     "main.e6c13ad2.css.map": "/gold-token/static/css/main.e6c13ad2.css.map",
-    "main.53f40172.js.map": "/gold-token/static/js/main.53f40172.js.map"
+    "main.e9618eef.js.map": "/gold-token/static/js/main.e9618eef.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.53f40172.js"
+    "static/js/main.e9618eef.js"
   ]
 }
