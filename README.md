@@ -1,21 +1,34 @@
-# Study Tokens Hardhat Project
+# Training Hardhat Project for studying ERC-20 tokens
 
-This project is deployed to gh-pages and available at [dvalentina.github.io/gold-token/](https://dvalentina.github.io/gold-token/)
+This project is deployed to gh-pages and available here => [github.io](https://dvalentina.github.io/gold-token/)\
+The contract made for this project is deployed and verified at Goerli Testnet => [Etherscan](https://goerli.etherscan.io/address/0xF61E8fA20930EFcEa54D83CE9E5E5C7F2A66b1ee)
 
 ## Features
 
-- Connection to a wallet
-- Getting info about an account and a ERC-20 token
-- Transfering tokens
+### Token
+
+- ERC-20 token contract using openzeppelin implementation
+- Minting/burning tokens functionality
+- Granting/revoking roles functionality
+
+### Frontend
+
+- Connection to a web3 wallet
+- Getting info about an account and an ERC-20 token
+- Transfering, minting, and burning tokens forms
+- Granting and revoking roles forms at the admin page
+- Reusable components
+- Notification system
 - Responsive layout
 
 ## Tools & Technologies
 
 - React, create-react-app
-- Styled-components
-- CSS Grid
-- Hardhat
-- Ethers
+- React context, custom hooks
+- styled-components
+- CSS grid
+- hardhat
+- ethers
 - Goerli Testnet
 - openzeppelin
 
