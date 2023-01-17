@@ -32,3 +32,13 @@ export const TransactionGrid = styled.div`
     grid-row: 2;
   }
 `;
+
+export const BackGrid = styled.div`
+  display: flex;
+  grid-row: 1;
+  grid-column: 2;
+
+  @media ${BREAKPOINT.M} {
+    display: none;
+  }
+`;
